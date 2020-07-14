@@ -6,12 +6,14 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.FormHttpMessageConverter;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
+import org.springframework.ui.Model;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +32,7 @@ public class PythonRequester {
             produces = MediaType.APPLICATION_JSON_VALUE,
             method = RequestMethod.GET
     )
-    public String doRequestPythonRest() {
+    public ModelAndView doRequestPythonRest(Model model) {
         log.info("doRequestPythonRest()");
 
         List<HttpMessageConverter<?>> converters =
@@ -54,6 +56,11 @@ public class PythonRequester {
 
         log.info("result = " + result);
 
-        return result;
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("pyResult");
+
+        model.addAttribute("msg", result);
+
+        return modelAndView;
     }
 }
