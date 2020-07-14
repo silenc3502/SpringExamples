@@ -1,8 +1,22 @@
-plugins {
-	id 'org.springframework.boot' version '2.3.1.RELEASE'
-	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
-	id 'java'
+buildscript {
+	ext {
+		springBootVersion = '2.3.1.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+		jcenter()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
 }
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'application'
+apply plugin: 'c'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
@@ -16,6 +30,7 @@ configurations {
 
 repositories {
 	mavenCentral()
+	jcenter()
 }
 
 dependencies {
@@ -34,3 +49,35 @@ dependencies {
 test {
 	useJUnitPlatform()
 }
+
+test {
+	systemProperty("java.library.path",
+			file("${buildDir}/libs/hello/shared").absolutePath)
+}
+
+model {
+	platforms {
+		x64 {
+			architecture "x64"
+		}
+	}
+
+	components {
+		hello(NativeLibrarySpec) {
+			binaries.all {
+				if (targetPlatform.operatingSystem.macOsX) {
+					cCompiler.args '-I', "${org.gradle.internal.jvm.Jvm.current().javaHome}/include"
+					cCompiler.args '-I', "${org.gradle.internal.jvm.Jvm.current().javaHome}/include/darwin"
+					cCompiler.args '-mmacosx-version-min=10.4'
+					linker.args '-mmacosx-version-min=10.'
+				} else if (targetPlatform.operatingSystem.linux) {
+					cCompiler.args '-I', "${org.gradle.internal.jvm.Jvm.current().javaHome}/include"
+					cCompiler.args '-I', "${org.gradle.internal.jvm.Jvm.current().javaHome}/include/linux"
+					cCompiler.args '-D_FILE_OFFSET_BITS=64'
+				}
+			}
+		}
+	}
+}
+
+test.dependsOn 'helloSharedLibrary'
