@@ -23,6 +23,7 @@ public class MainController {
 
     // localhost:8080/으로 접속하면
     // 제어 유닛이 아래 코드를 실행시킨다.
+    // localhost:8080 <<--- 아이피 주소와 포트 번호
     @GetMapping("/")
     public String index(Locale locale, Model model) {
         log.info("index()");
