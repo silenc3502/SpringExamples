@@ -56,9 +56,13 @@ public class PythonRequester {
 
         log.info("result = " + result);
 
+        // 이 녀석의 처리 결과는 pyResult.html에서 확인하라는 의미
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("pyResult");
 
+        // RestFUL 서버에 요청을 보내 받아온 정보가 result인데
+        // 이 정보를 msg라는 속성값에 할당했다.
+        // 그러므로 사용하고자 한다면 html 코드에서 msg를 활용해야 한다.
         model.addAttribute("msg", result);
 
         return modelAndView;
