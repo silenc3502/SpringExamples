@@ -17,5 +17,10 @@
          Server Time: ${servTime}으로 실제 값을 뽑아온다. -->
     <p th:text="${servTime}">Server Time: ${servTime}</p>
     <p>레알 ?</p>
+    <form action="http://localhost:5000/imgServer"
+          method="POST" enctype="multipart/form-data">
+        <input type="file" name="file"/>
+        <input type="submit"/>
+    </form>
 </body>
 </html>
