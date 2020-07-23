@@ -11,6 +11,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class HtmlBoardController {
     private static final Logger logger =
             LoggerFactory.getLogger(HtmlBoardController.class);
+    @GetMapping(value = "/get", params = "register")
+    public String getRegister() {
+        logger.info("getRegister()");
+
+        return "htmlRegister";
+    }
 
     @GetMapping("/html/register")
     public String registerForm() {
