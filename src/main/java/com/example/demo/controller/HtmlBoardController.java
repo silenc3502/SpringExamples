@@ -15,7 +15,7 @@ public class HtmlBoardController {
     public String getRegister() {
         logger.info("getRegister()");
 
-        return "htmlRegister";
+        return "register";
     }
 
     @GetMapping("/html/register")
