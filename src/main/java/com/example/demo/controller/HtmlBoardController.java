@@ -18,6 +18,13 @@ public class HtmlBoardController {
         return "register";
     }
 
+    @GetMapping(value = "/get", params = "read")
+    public String getRead() {
+        logger.info("getRead()");
+
+        return "htmlRead";
+    }
+
     @GetMapping("/html/register")
     public String registerForm() {
         logger.info("registerForm");
@@ -70,3 +77,8 @@ public class HtmlBoardController {
         return "htmlRead";
     }
 }
+
+// MusicController를 하나 만든다.
+// Controller 기능으로는 음악 재생, 메뉴 보기, 녹음
+// 이와 관련된 HTML 및 Controller 구성을 직접 해보자!
+// (음악이 재생, 녹음 등등이 될 필요는 없다)
