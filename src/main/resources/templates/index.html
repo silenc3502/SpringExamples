@@ -22,5 +22,27 @@
         <input type="file" name="file"/>
         <input type="submit"/>
     </form>
+
+    <!-- th:action Thymeleaf라는 녀석에서 행동에 대한 처리
+         우리가 버튼을 눌렀을때 어디로 링크시킬지를 결정한다.
+         @가 붙어있으면 중괄호가 쳐진 URL로 링크시킨다.
+         method 지정을 하지 않으면 디폴트로 GET으로 날아감
+         GET 방식은 ?가 붙어서 URL 만들어짐
+         POST는 json 방식을 사용 -->
+    <form th:action="@{/html/register}">
+        <input type="submit" value="register(GET)">
+    </form>
+    <form th:action="@{/html/register}" method="post">
+        <input type="submit" value="register(POST)">
+    </form>
+    <form th:action="@{/html/modify}">
+        <input type="submit" value="modify(GET)">
+    </form>
+    <form th:action="@{/html/modify}" method="post">
+        <input type="submit" value="modify(POST)">
+    </form>
+    <form th:action="@{/html/delete}" method="post">
+        <input type="submit" value="delete(POST)">
+    </form>
 </body>
 </html>
