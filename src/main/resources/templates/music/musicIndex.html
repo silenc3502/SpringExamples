@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Music Page</h1>
+    <form th:action="@{/musics/play}">
+        <input type="submit" value="음악 재생">
+    </form>
+    <form th:action="@{/musics/menu}">
+        <input type="submit" value="메뉴 보기">
+    </form>
+    <form th:action="@{/musics/record}">
+        <input type="submit" value="음성 녹음">
+    </form>
+</body>
+</html>
