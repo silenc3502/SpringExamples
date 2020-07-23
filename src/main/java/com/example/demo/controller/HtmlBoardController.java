@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class HtmlBoardController {
@@ -36,5 +37,15 @@ public class HtmlBoardController {
         logger.info("listForm()");
 
         return "htmlListForm";
+    }
+
+    @GetMapping("/html/board/read/{boardNo}")
+    public String readForm(
+            // 모든 게시판에는 게시판 번호가 있다.
+            // PathVariable을 통해 가변 번호를 받을 수 있게 만든다.
+            @PathVariable("boardNo") int boardNo) {
+        logger.info("readForm: " + boardNo);
+
+        return "htmlRead";
     }
 }
