@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.lang.reflect.Member;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("musics")
@@ -48,17 +50,37 @@ public class MusicController {
     }
 
     @GetMapping("/menu")
-    public String musicMenu() {
+    public ModelAndView musicMenu() {
         log.info("musicMenu()");
 
-        return "music/musicMenu";
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("music/musicMenu");
+
+        return modelAndView;
     }
 
     @GetMapping("/record")
-    public String musicRecord() {
+    public ModelAndView musicRecord() {
         log.info("musicRecord()");
 
-        return "music/musicRecord";
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("music/musicRecord");
+
+        return modelAndView;
     }
 
+    @GetMapping("/titles")
+    public List<Music> musicTitles() {
+        log.info("musicTitles()");
+
+        List<Music> list = new ArrayList<Music>();
+
+        Music music1 = new Music();
+        list.add(music1);
+
+        Music music2 = new Music();
+        list.add(music2);
+
+        return list;
+    }
 }
