@@ -110,3 +110,14 @@ public class HtmlBoardController {
 // Controller 기능으로는 음악 재생, 메뉴 보기, 녹음
 // 이와 관련된 HTML 및 Controller 구성을 직접 해보자!
 // (음악이 재생, 녹음 등등이 될 필요는 없다)
+
+// DB 접속하기
+// mysql -u bitai -p
+
+// 계정이 터진 경우
+// sudo mysql -u root -p
+// 계정 비밀번호 입력함
+// create user bitai@localhost identified by '456123';
+// grant all privileges on testdb.* to bitai@localhost identified by '456123';
+// exit
+// mysql -u bitai -p
