@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.Date;
+
 @Controller
 public class HtmlBoardController {
     private static final Logger logger =
@@ -90,6 +92,15 @@ public class HtmlBoardController {
 
         logger.info("userId = " + userId);
         logger.info("passwd = " + passwd);
+
+        return "form/success";
+    }
+
+    @GetMapping("/getRegTest")
+    public String getRegTest(String userId, Date date) {
+        logger.info("getRegTest()");
+        logger.info("userId = " + userId);
+        logger.info("date = " + date);
 
         return "form/success";
     }
