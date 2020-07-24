@@ -76,6 +76,23 @@ public class HtmlBoardController {
 
         return "htmlRead";
     }
+
+    @GetMapping("/regtestpage")
+    public String registerTestPage() {
+        logger.info("registerTestPage()");
+
+        return "form/registerForm";
+    }
+
+    @PostMapping("/regtest")
+    public String registerTest(String userId, String passwd) {
+        logger.info("registerTest()");
+
+        logger.info("userId = " + userId);
+        logger.info("passwd = " + passwd);
+
+        return "form/success";
+    }
 }
 
 // MusicController를 하나 만든다.

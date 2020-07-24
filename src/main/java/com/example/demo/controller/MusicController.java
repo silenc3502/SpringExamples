@@ -164,7 +164,8 @@ public class MusicController {
         try {
             HttpHeaders headers = new HttpHeaders();
 
-            in = new FileInputStream("");
+            in = new FileInputStream(
+                    "/home/bitai/proj/PythonWorkshop/test_image_1.jpg");
             headers.setContentType(MediaType.IMAGE_JPEG);
 
             entity = new ResponseEntity<byte[]>(
