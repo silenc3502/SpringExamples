@@ -22,10 +22,17 @@
                 List is Empty
             </td>
         </tr>
-        <!--
+        <!-- foreach for(A : B) -->
         <tr th:each="board: ${list}">
-            <td align="center">
-                <a th:text="${board.title}">${board.title}</a>
+            <td align="center" th:text="${board.boardNo}">
+                ${board.boardNo}
+            </td>
+            <td align="left">
+                <a href="board/read.html"
+                   th:href="@{|read?boardNo=${board.boardNo}|}"
+                   th:text="${board.title}">
+                    ${board.title}
+                </a>
             </td>
             <td align="right" th:text="${board.writer}">
                 ${board.writer}
@@ -35,7 +42,6 @@
                 ${board.regDate}
             </td>
         </tr>
-        -->
     </table>
 </body>
 </html>
