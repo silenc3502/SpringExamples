@@ -12,22 +12,22 @@
         var formObj = $("#board");
 
         console.log(formObj);
-    });
 
-    $("#btnModify").on("click", function() {
-        var boardNo = $("#boardNo");
-        var boardNoVal = boardNo.val();
+        $("#btnModify").on("click", function() {
+            var boardNo = $("#boardNo");
+            var boardNoVal = boardNo.val();
 
-        self.location = "modify?boardNo=" + boardNoVal;
-    });
+            self.location = "modify?boardNo=" + boardNoVal;
+        });
 
-    $("#btnRemove").on("click", function() {
-        formObj.attr("action", "remove");
-        formObj.submit();
-    });
+        $("#btnRemove").on("click", function() {
+            formObj.attr("action", "remove");
+            formObj.submit();
+        });
 
-    $("#btnList").on("click", function() {
-        self.location = "list";
+        $("#btnList").on("click", function() {
+            self.location = "list";
+        });
     });
 </script>
 <body>
