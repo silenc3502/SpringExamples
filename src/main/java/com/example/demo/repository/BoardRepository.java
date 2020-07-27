@@ -12,20 +12,28 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+// DB 처리에 대한 어노테이션(Component)
 @Repository
 // BoardDataAccessObject(BoardDAO)
 public class BoardRepository {
     static final Logger log =
             LoggerFactory.getLogger(BoardRepository.class);
 
+    // JdbcTemplate은 DB Query를 생성하는데 활용한다.
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
     public void create(Board board) throws Exception {
         log.info("Repository create()");
 
+        // insert는 데이터를 입력함
+        // board는 create table로 만든 내용
+        // board에 있는 title, content, writer에
+        // 특정값 3 개를 삽입하기 위해 ?, ?, ?를 셋팅한 상태
         String query = "insert into board(" +
             "title, content, writer) values(?, ?, ?)";
+        // 아래 getter를 이용해서 ? 부분들의 값을 채운다.
+        // 즉 물음표가 2개면 getter도 2개를 사용하면 된다.
         jdbcTemplate.update(query, board.getTitle(),
                 board.getContent(), board.getWriter());
     }
@@ -33,6 +41,12 @@ public class BoardRepository {
     public List<Board> list() throws Exception {
         log.info("Repository list()");
 
+        // select는 값을 선택해오는 녀석이고
+        // board, title ... 등등은 board에 있는 정보들
+        // 조건을 줄 때 where를 사용한다.
+        // board_no가 0 보다 크다는 조건을 가지고 있음
+        // order by는 정렬 조건에 해당한다.
+        // board_no, reg_date에 대해 정렬 조건을 줬음
         List<Board> results = jdbcTemplate.query(
             "select board_no, title, content, " +
                     "writer, reg_date from board " +
