@@ -27,4 +27,9 @@ public class BoardServiceImpl implements BoardService {
     public List<Board> list() throws Exception {
         return boardRepository.list();
     }
+
+    @Override
+    public Board read(Integer boardNo) throws Exception {
+        return boardRepository.read(boardNo);
+    }
 }

@@ -56,4 +56,14 @@ public class BoardController {
         // HTML 파일
         return "board/list";
     }
+
+    @GetMapping("/read")
+    public String read(int boardNo, Model model)
+                            throws Exception {
+        log.info("read()");
+
+        model.addAttribute(service.read(boardNo));
+
+        return "board/read";
+    }
 }
