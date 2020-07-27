@@ -100,3 +100,21 @@ public class BoardController {
         return "board/success";
     }
 }
+
+// 여태까지 MySQL과 Spring을 연동하는 방식을 파악하였다.
+// 그러므로 현재 예제를 토대로 유사한 연습문제를 작성해보자!
+// 1. MySQL에 table을 작성한다.
+//    (Entity: ItemMania
+//     id, pw, nickname, item, price)
+// 2. entity 패키지에 실제 사용할 Entity 클래스를 작성한다.
+// 3. controller 패키지에
+//    URL을 처리할 ItemManiaController를 만든다.
+// 4. @Service에 대한 인터페이스와 구현체를 작성한다.
+// 5. @Repository에 대한 DB 처리를 실제로 수행한다.
+// 6. 각각의 필요한 HTML 파일들을 작성한다.
+// 7. HTML 연동 순서
+// 7-1. list(모든 게시글을 확인할 수 있는 형태)
+// 7-2. register(게시글을 등록할 수 있도록 만든다)
+// 7-3. remove(게시글을 삭제할 수 있도록 만들어본다)
+// 7-4. read(게시글을 실제로 읽을 수 있도록 만들어본다)
+// 7-5. modify(게시글을 수정할 수 있도록 만들어본다)
