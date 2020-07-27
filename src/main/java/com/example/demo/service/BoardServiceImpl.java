@@ -32,4 +32,14 @@ public class BoardServiceImpl implements BoardService {
     public Board read(Integer boardNo) throws Exception {
         return boardRepository.read(boardNo);
     }
+
+    @Override
+    public void remove(Integer boardNo) throws Exception {
+        boardRepository.remove(boardNo);
+    }
+
+    @Override
+    public void modify(Board board) throws Exception {
+        boardRepository.modify(board);
+    }
 }
