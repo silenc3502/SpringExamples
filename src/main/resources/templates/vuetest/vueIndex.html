@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:v-bind="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Vue Index Page</title>
@@ -27,6 +27,17 @@
         </transition>
         <p>{{ count }}번 클릭했다!</p>
         <button v-on:click="increment">Count</button>
+        <button v-on:click="isActive=!isActive">
+            Change Mode
+        </button>
+        <p v-bind:class="{ child: isChild, 'is-active': isActive }"
+           class="item">
+            Dynamic Class
+        </p>
+        <p v-bind:style="{ color: textColor, backgroundColor: bgColor }"
+           class="item">
+            Dynamic Style
+        </p>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10">
     </script>
@@ -44,7 +55,11 @@
                 list: ['apple', 'banana', 'cherry'],
                 show: true,
                 num: 1,
-                count: 0
+                count: 0,
+                isChild: true,
+                isActive: true,
+                textColor: 'red',
+                bgColor: 'lightgray'
             },
             methods: {
                 handleClick: function(event) {

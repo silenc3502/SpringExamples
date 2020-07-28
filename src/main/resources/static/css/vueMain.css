@@ -5,3 +5,12 @@
 .v-enter, .v-leave-to {
     opacity: 0;
 }
+
+.item {
+    padding: 4px 8px;
+    transition: background-color 0.4s;
+}
+
+.is-active {
+    background: #ffdada;
+}
