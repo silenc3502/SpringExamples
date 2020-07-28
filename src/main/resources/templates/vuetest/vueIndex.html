@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Vue Index Page</title>
@@ -13,6 +13,11 @@
                 item에 설정하고 각각의 item들을 출력한다. -->
             <li v-for="item in list">{{ item }}</li>
         </ol>
+        <button v-on:click="handleClick">Click</button>
+        <input v-model="initMsg">
+        <p>{{ initMsg }}</p>
+        <button v-on:click="show=!show">Change</button>
+        <p v-if="show">Show Time!</p>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10">
     </script>
@@ -26,7 +31,14 @@
             data: {
                 // 변수(message): 내용
                 message: 'Hello Vue.js',
-                list: ['apple', 'banana', 'cherry']
+                initMsg: 'Initial Message',
+                list: ['apple', 'banana', 'cherry'],
+                show: true
+            },
+            methods: {
+                handleClick: function(event) {
+                    alert(event.target)
+                }
             }
         })
     </script>
