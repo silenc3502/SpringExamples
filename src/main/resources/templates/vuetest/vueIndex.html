@@ -52,7 +52,7 @@
         <input type="range" min="0" max="100" v-model="radius">
         <br>
 
-        <p>캐릭터명: {{ characterName }}</p>
+        <p>캐릭터명: {{ characterName }}&nbsp;&nbsp;&nbsp;경험치: {{ curExp }}/{{ needExp}}</p>
         <p>레벨: {{ characterLv }}</p>
         <p>상태: {{ characterStatus }}</p>
         <p>HP: {{ characterHp }}</p>
@@ -66,7 +66,7 @@
         <ul>
             <li v-for="(item, index) in monster"
                 v-bind:key="item.id" v-if="item.hp">
-                ID.{{ item.id }} {{ item.monsterName }} HP.{{ item.hp }}
+                ID:{{ item.id }} {{ item.monsterName }} HP:{{ item.hp }}
                 <span v-if="item.hp > 300">Strong</span>
                 <span v-if="item.hp < 50">Morbidity</span>
                 <button v-on:click="doRemove(index)">
@@ -75,6 +75,12 @@
                 <button v-on:click="doAttack(index)">
                     Attack
                 </button>
+            </li>
+            <!-- 몬스터의 hp가 0임을 확인하면
+                 경험치 산정을 수행하도록 한다. -->
+            <li v-for="(item, index) in monster"
+                v-bind:key="item.id">
+                ID:{{ item.id }} {{ item.monsterName }} HP:{{ item.hp }}
             </li>
         </ul>
     </div>
@@ -105,13 +111,21 @@
                     { id: 2, monsterName: 'Goblin', hp: 20 },
                     { id: 3, monsterName: 'Dragon', hp: 5000 }
                 ],
+                monBook: [
+                    { monsterName: 'Slime', exp: 1 },
+                    { monsterName: 'Goblin', exp: 2 },
+                    { monsterName: 'Chimera', exp: 250 },
+                    { monsterName: 'Dragon', exp: 100000 }
+                ],
                 monsterName: 'Chimera',
                 characterName: '',
                 characterLv: 1,
                 characterStatus: '',
                 characterHp: 100,
                 characterAtk: 10,
-                characterDef: 1
+                characterDef: 1,
+                curExp: 0,
+                needExp: 10
             },
             methods: {
                 handleClick: function(event) {
@@ -138,7 +152,7 @@
                     this.monster.splice(index, 1)
                 },
                 doAttack: function(index) {
-                    this.monster[index].hp -= 10
+                    this.monster[index].hp -= this.characterAtk
                 }
             }
         })
