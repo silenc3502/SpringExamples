@@ -19,7 +19,15 @@
             <li v-for="item in list">{{ item }}</li>
         </ol>
         <button v-on:click="handleClick">Click</button>
-        <input v-model="initMsg">
+        <input v-model="initMsg"><br><br>
+        <!-- 1. 캐릭터 이름, 레벨, 상태, HP, ATK, DEF 표시 -->
+        캐릭터명: <input v-model="characterName"><br>
+        레벨: <input v-model="characterLv"><br>
+        상태: <input v-model="characterStatus"><br>
+        HP: <input v-model="characterHp"><br>
+        ATK: <input v-model="characterAtk"><br>
+        DEF: <input v-model="characterDef"><br>
+
         <p>{{ initMsg }}</p>
         <button v-on:click="show=!show">Change</button>
         <transition>
@@ -42,6 +50,15 @@
             <circle v-bind:r="radius" fill="lightblue" cx="100" cy="75"/>
         </svg>
         <input type="range" min="0" max="100" v-model="radius">
+        <br>
+
+        <p>캐릭터명: {{ characterName }}</p>
+        <p>레벨: {{ characterLv }}</p>
+        <p>상태: {{ characterStatus }}</p>
+        <p>HP: {{ characterHp }}</p>
+        <p>ATK: {{ characterAtk }}</p>
+        <p>DEF: {{ characterDef }}</p>
+
         이름
         <input v-model="monsterName">
         <!-- Vue는 객체의 변화를 감지하면 HTML을 다시 렌더링한다. -->
@@ -88,7 +105,13 @@
                     { id: 2, monsterName: 'Goblin', hp: 20 },
                     { id: 3, monsterName: 'Dragon', hp: 5000 }
                 ],
-                monsterName: 'Chimera'
+                monsterName: 'Chimera',
+                characterName: '',
+                characterLv: 1,
+                characterStatus: '',
+                characterHp: 100,
+                characterAtk: 10,
+                characterDef: 1
             },
             methods: {
                 handleClick: function(event) {
@@ -122,3 +145,10 @@
     </script>
 </body>
 </html>
+
+<!--
+1. 캐릭터 이름, 레벨, 상태, HP, ATK, DEF 표시
+2. 경험치바 만들기 예) 110 / 150
+3. 몬스터에 경험치 추가
+4. 몬스터 잡으면 레벨업 기능을 추가해보자!
+-->
