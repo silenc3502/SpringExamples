@@ -47,10 +47,17 @@
         <!-- Vue는 객체의 변화를 감지하면 HTML을 다시 렌더링한다. -->
         <button v-on:click="addMonster">Add Monster</button>
         <ul>
-            <li v-for="item in monster"
-                v-bind:key="item.id">
+            <li v-for="(item, index) in monster"
+                v-bind:key="item.id" v-if="item.hp">
                 ID.{{ item.id }} {{ item.monsterName }} HP.{{ item.hp }}
                 <span v-if="item.hp > 300">Strong</span>
+                <span v-if="item.hp < 50">Morbidity</span>
+                <button v-on:click="doRemove(index)">
+                    Delete Monster
+                </button>
+                <button v-on:click="doAttack(index)">
+                    Attack
+                </button>
             </li>
         </ul>
     </div>
@@ -101,8 +108,14 @@
                     this.monster.push({
                         id: max + 1,
                         monsterName: this.monsterName,
-                        hp: 2000
+                        hp: 100
                     })
+                },
+                doRemove: function(index) {
+                    this.monster.splice(index, 1)
+                },
+                doAttack: function(index) {
+                    this.monster[index].hp -= 10
                 }
             }
         })
