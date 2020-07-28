@@ -77,13 +77,15 @@
                 </button>
             </li>
             <!-- 몬스터의 hp가 0임을 확인하면
-                 경험치 산정을 수행하도록 한다. -->
+                 경험치 산정을 수행하도록 한다.
+                 hp가 0임을 확인하고 경험치 산정후 delete! -->
             <li v-for="(item, index) in monster"
                 v-bind:key="item.id">
                 ID:{{ item.id }} {{ item.monsterName }} HP:{{ item.hp }}
             </li>
         </ul>
     </div>
+    <script src="https://unpkg.com/vuex@2.0.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10">
     </script>
     <script>
@@ -154,6 +156,31 @@
                 doAttack: function(index) {
                     this.monster[index].hp -= this.characterAtk
                 }
+            },
+            beforeCreate: function () {
+                alert('Before Create: ' + this.monster)
+            },
+            created: function () {
+                alert('Created: ' + this.monster)
+            },
+            beforeMount: function () {
+                alert('Before Mount: ' + this.monster)
+            },
+            mounted: function () {
+                alert('Mounted: ' + this.monster)
+            },
+            // Vue 객체에 변화가 발생했을때 다시 렌더링(그림 그리기)
+            beforeUpdate: function () {
+                alert('Before Update: ' + this.monster)
+            },
+            updated: function () {
+                alert('Updated: ' + this.monster)
+            },
+            beforeDestroy: function () {
+                alert('Before Destroy: ' + this.monster)
+            },
+            destroyed: function () {
+                alert('Destroyed: ' + this.monster)
             }
         })
     </script>
