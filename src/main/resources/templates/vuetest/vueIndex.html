@@ -38,6 +38,21 @@
            class="item">
             Dynamic Style
         </p>
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+            <circle v-bind:r="radius" fill="lightblue" cx="100" cy="75"/>
+        </svg>
+        <input type="range" min="0" max="100" v-model="radius">
+        이름
+        <input v-model="monsterName">
+        <!-- Vue는 객체의 변화를 감지하면 HTML을 다시 렌더링한다. -->
+        <button v-on:click="addMonster">Add Monster</button>
+        <ul>
+            <li v-for="item in monster"
+                v-bind:key="item.id">
+                ID.{{ item.id }} {{ item.monsterName }} HP.{{ item.hp }}
+                <span v-if="item.hp > 300">Strong</span>
+            </li>
+        </ul>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10">
     </script>
@@ -59,7 +74,14 @@
                 isChild: true,
                 isActive: true,
                 textColor: 'red',
-                bgColor: 'lightgray'
+                bgColor: 'lightgray',
+                radius: 50,
+                monster: [
+                    { id: 1, monsterName: 'Slime', hp: 10 },
+                    { id: 2, monsterName: 'Goblin', hp: 20 },
+                    { id: 3, monsterName: 'Dragon', hp: 5000 }
+                ],
+                monsterName: 'Chimera'
             },
             methods: {
                 handleClick: function(event) {
@@ -67,6 +89,20 @@
                 },
                 increment: function() {
                     this.count += 1
+                },
+                addMonster: function() {
+                    // 몬스터(monster) 배열에서 최대값을 찾기 위한 작업
+                    // reduce를 통해 각각의 원소에 있는 모든 값들을 검사함
+                    // 최종적으로 id값중 최대값을 획득하게 된다.
+                    var max = this.monster.reduce(function(a, b) {
+                        return a > b.id ? a : b.id
+                    }, 0)
+                    // push를 통해서 monster 배열에 새로운 내용을 추가한다.
+                    this.monster.push({
+                        id: max + 1,
+                        monsterName: this.monsterName,
+                        hp: 2000
+                    })
                 }
             }
         })
