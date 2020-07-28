@@ -9,6 +9,10 @@
     <h2>Vue Index Page</h2>
     <div id="app">
         <h3>{{ message }}</h3>
+        <!-- Vue 객체에 있는 message의 길이를 산출 -->
+        <p>{{ message.length }}</p>
+        <p>{{ list[2] }}</p>
+        <p>{{ list[num] }}</p>
         <ol>
             <!-- Vue 객체가 가지고 있는 list에서 정보를 뽑아와서
                 item에 설정하고 각각의 item들을 출력한다. -->
@@ -21,6 +25,8 @@
         <transition>
             <p v-if="show">Show Time!</p>
         </transition>
+        <p>{{ count }}번 클릭했다!</p>
+        <button v-on:click="increment">Count</button>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10">
     </script>
@@ -36,11 +42,16 @@
                 message: 'Hello Vue.js',
                 initMsg: 'Initial Message',
                 list: ['apple', 'banana', 'cherry'],
-                show: true
+                show: true,
+                num: 1,
+                count: 0
             },
             methods: {
                 handleClick: function(event) {
                     alert(event.target)
+                },
+                increment: function() {
+                    this.count += 1
                 }
             }
         })
