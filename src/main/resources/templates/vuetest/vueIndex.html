@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Vue Index Page</title>
+    <link href="css/vueMain.css" rel="stylesheet">
 </head>
 <body>
     <h2>Vue Index Page</h2>
@@ -17,7 +18,9 @@
         <input v-model="initMsg">
         <p>{{ initMsg }}</p>
         <button v-on:click="show=!show">Change</button>
-        <p v-if="show">Show Time!</p>
+        <transition>
+            <p v-if="show">Show Time!</p>
+        </transition>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10">
     </script>
