@@ -158,29 +158,44 @@
                 }
             },
             beforeCreate: function () {
-                alert('Before Create: ' + this.monster)
+                // alert('Before Create: ' + this.monster)
             },
             created: function () {
-                alert('Created: ' + this.monster)
+                // alert('Created: ' + this.monster)
             },
             beforeMount: function () {
-                alert('Before Mount: ' + this.monster)
+                // alert('Before Mount: ' + this.monster)
             },
             mounted: function () {
-                alert('Mounted: ' + this.monster)
+                // alert('Mounted: ' + this.monster)
             },
             // Vue 객체에 변화가 발생했을때 다시 렌더링(그림 그리기)
+            // 동기 처리를 보장한다.
+            // 만약 네트워킹 환경이라면 ? (세마포어 vs 스핀락)
             beforeUpdate: function () {
-                alert('Before Update: ' + this.monster)
+                // alert('Before Update: ' + this.monster)
+
+                var i
+                for(i = 0; i < this.monster.length; i++) {
+                    if(this.monster[i].hp <= 0) {
+                        for(var j = 0; j < this.monBook.length; j++) {
+                            if(this.monster[i].monsterName
+                              == this.monBook[j].monsterName) {
+                                this.curExp += this.monBook[j].exp
+                            }
+                        }
+                        this.monster.splice(i, 1)
+                    }
+                }
             },
             updated: function () {
-                alert('Updated: ' + this.monster)
+                // alert('Updated: ' + this.monster)
             },
             beforeDestroy: function () {
-                alert('Before Destroy: ' + this.monster)
+                // alert('Before Destroy: ' + this.monster)
             },
             destroyed: function () {
-                alert('Destroyed: ' + this.monster)
+                // alert('Destroyed: ' + this.monster)
             }
         })
     </script>
