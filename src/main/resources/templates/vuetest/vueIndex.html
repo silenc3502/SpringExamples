@@ -187,6 +187,27 @@
                         this.monster.splice(i, 1)
                     }
                 }
+
+                // curExp, needExp
+                // 1. 레벨이 오르는지 판정
+                //    curExp - needExp >= 0
+
+                // 2. 레벨이 오를수록 필요한 경험치 총량이 증가
+                //    레벨을 올리고 경험치 총량을 증가시킨다.
+                var criteria = this.curExp
+                for(; this.curExp >= this.needExp; ) {
+                    this.curExp -= this.needExp
+                    // 레벨업은 for문 내부에서 진행한다.
+                    // 또한 경험치 총량의 증가 또한 여기서 진행한다.
+                    this.characterLv += 1
+                    this.characterHp += 10
+                    this.characterAtk += 2
+                    this.characterDef += 0.4
+                    // 총량의 증가 정책은 어떻게 할것인가 ?
+                    // 원래값 + 원래값 * 1.2
+                    // 원래값 * 2.2
+                    this.needExp *= 2.2
+                }
             },
             updated: function () {
                 // alert('Updated: ' + this.monster)
