@@ -79,10 +79,12 @@
             <!-- 몬스터의 hp가 0임을 확인하면
                  경험치 산정을 수행하도록 한다.
                  hp가 0임을 확인하고 경험치 산정후 delete! -->
+            <!--
             <li v-for="(item, index) in monster"
                 v-bind:key="item.id">
                 ID:{{ item.id }} {{ item.monsterName }} HP:{{ item.hp }}
             </li>
+            -->
         </ul>
     </div>
     <script src="https://unpkg.com/vuex@2.0.0"></script>
@@ -126,6 +128,7 @@
                 characterHp: 100,
                 characterAtk: 10,
                 characterDef: 1,
+                onlyCalcDef: 0,
                 curExp: 0,
                 needExp: 10
             },
@@ -196,17 +199,22 @@
                 //    레벨을 올리고 경험치 총량을 증가시킨다.
                 var criteria = this.curExp
                 for(; this.curExp >= this.needExp; ) {
-                    this.curExp -= this.needExp
+                    this.curExp = parseInt(this.curExp - this.needExp)
                     // 레벨업은 for문 내부에서 진행한다.
                     // 또한 경험치 총량의 증가 또한 여기서 진행한다.
                     this.characterLv += 1
                     this.characterHp += 10
                     this.characterAtk += 2
-                    this.characterDef += 0.4
+                    // 방어력 계산 절차
+                    // onlyCalcDef를 계산용으로 사용하므로
+                    // 실제 계산은 onlyCalcDef에 적용하도록 한다.
+                    // 버림을 하여 산출한 정수값을 characterDef에 적용한다.
+                    this.onlyCalcDef += 0.4
+                    this.characterDef = Math.floor(this.onlyCalcDef)
                     // 총량의 증가 정책은 어떻게 할것인가 ?
-                    // 원래값 + 원래값 * 1.2
-                    // 원래값 * 2.2
-                    this.needExp *= 2.2
+                    // 원래값 + 원래값 * 0.5
+                    // 원래값 * 1.5
+                    this.needExp = parseInt(this.needExp * 1.5)
                 }
             },
             updated: function () {
