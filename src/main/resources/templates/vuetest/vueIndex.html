@@ -134,6 +134,10 @@
             <option value="K">K</option>
         </select>
         <p>{{ optArrValue }}</p>
+        <p>{{ itemBook[0].itemName }}</p>
+        <p>{{ itemBook[0].price }}</p>
+        <p>{{ itemBook[0].effect.desc }}</p>
+        <p>{{ itemBook[0].effect.amount }}</p>
         <!-- 상점 기능 구현에서 제일 중요한 것들을 추려보자!
              1. 게임내에 소지금에 대한 정보가 필요하다.
              2. 몹을 잡을때마다 일정 부분 획득할 수 있게 만들어줘야 한다.
@@ -142,6 +146,12 @@
              5. 구매에 대한 계산
              6. 판매에 대한 계산 -->
         <h3>상점</h3>
+        <label>
+            <input type="checkbox" v-model="shopView">Shopping!
+        </label>
+        <transition>
+            <p v-if="shopView">Shopping!</p>
+        </transition>
     </div>
     <script src="https://unpkg.com/vuex@2.0.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10">
@@ -172,16 +182,25 @@
                     { id: 3, monsterName: 'Dragon', hp: 5000, status: 'Default' }
                 ],
                 monBook: [
-                    { monsterName: 'Slime', exp: 1, hp: 10 },
-                    { monsterName: 'Goblin', exp: 2, hp: 20 },
-                    { monsterName: 'Red Slime', exp: 5, hp: 10 },
-                    { monsterName: 'Chimera', exp: 20, hp: 100 },
-                    { monsterName: 'King Bee', exp: 300, hp: 1200 },
-                    { monsterName: 'Ghost', exp: 500, hp: 1500 },
-                    { monsterName: 'Lich', exp: 1000, hp: 2000 },
-                    { monsterName: 'Behemoth', exp: 2000, hp: 10000 },
-                    { monsterName: 'Dragon', exp: 100000, hp: 100000 },
-                    { monsterName: 'King Behemoth', exp: 200000, hp: 200000 }
+                    { monsterName: 'Slime', exp: 1, hp: 10, sprMoney: 10 },
+                    { monsterName: 'Goblin', exp: 2, hp: 20, sprMoney: 20 },
+                    { monsterName: 'Red Slime', exp: 5, hp: 10, sprMoney: 40 },
+                    { monsterName: 'Chimera', exp: 20, hp: 100, sprMoney: 200 },
+                    { monsterName: 'King Bee', exp: 300, hp: 1200, sprMoney: 2400 },
+                    { monsterName: 'Ghost', exp: 500, hp: 1500, sprMoney: 3000 },
+                    { monsterName: 'Lich', exp: 1000, hp: 2000, sprMoney: 4000 },
+                    { monsterName: 'Behemoth', exp: 2000, hp: 10000, sprMoney: 20000 },
+                    { monsterName: 'Dragon', exp: 100000, hp: 100000, sprMoney: 200000 },
+                    { monsterName: 'King Behemoth', exp: 200000, hp: 200000, sprMoney: 500000 }
+                ],
+                itemBook: [
+                    { itemName: 'HP Potion I', price: 50, effect: { desc: "hp recover", amount: 200 } },
+                    { itemName: 'HP Potion II', price: 200, effect: { desc: "hp recover", amount: 500 } },
+                    { itemName: 'HP Potion III', price: 1000, effect: { desc: "hp recover", amount: 2000 } },
+                    { itemName: 'HP Potion IV', price: 6000, effect: { desc: "hp recover", amount: 6000 } },
+                    { itemName: 'HP Potion V', price: 42000, effect: { desc: "hp recover", amount: 15000 } },
+                    { itemName: 'Sword', price: 1000000, effect: { desc: "weapon", atk: 100 } },
+                    { itemName: 'Iron Sword', price: 20000000, effect: { desc: "weapon", atk: 200 } }
                 ],
                 monsterName: 'Chimera',
                 characterName: '',
@@ -199,7 +218,8 @@
                 radValue: '',
                 optValue: '',
                 optArrValue: [],
-                money: 500
+                money: 500,
+                shopView: false
             },
             methods: {
                 handleClick: function(event) {
@@ -294,6 +314,8 @@
                             if(this.monster[i].monsterName
                               == this.monBook[j].monsterName) {
                                 this.curExp += this.monBook[j].exp
+                                var tmp = this.monBook[j].sprMoney
+                                this.money += parseInt(tmp + Math.random() * (tmp / 2))
                             }
                         }
                         this.monster.splice(i, 1)
