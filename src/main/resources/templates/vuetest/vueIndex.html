@@ -59,14 +59,18 @@
         <p>ATK: {{ characterAtk }}</p>
         <p>DEF: {{ characterDef }}</p>
 
+        <!--
         이름
         <input v-model="monsterName">
+        -->
         <!-- Vue는 객체의 변화를 감지하면 HTML을 다시 렌더링한다. -->
         <button v-on:click="addMonster">Add Monster</button>
+        <button v-on:click="addManyMonster">Add Many Monster</button>
+        <button v-on:click="ThorHammer">Thor's Hammer</button>
         <ul>
             <li v-for="(item, index) in monster"
                 v-bind:key="item.id" v-if="item.hp">
-                ID:{{ item.id }} {{ item.monsterName }} HP:{{ item.hp }}
+                ID:{{ item.id }} {{ item.monsterName }} HP:{{ item.hp }} Status:{{ item.status }}
                 <span v-if="item.hp > 300">Strong</span>
                 <span v-if="item.hp < 50">Morbidity</span>
                 <button v-on:click="doRemove(index)">
@@ -113,9 +117,9 @@
                 bgColor: 'lightgray',
                 radius: 50,
                 monster: [
-                    { id: 1, monsterName: 'Slime', hp: 10 },
-                    { id: 2, monsterName: 'Goblin', hp: 20 },
-                    { id: 3, monsterName: 'Dragon', hp: 5000 }
+                    { id: 1, monsterName: 'Slime', hp: 10, status: 'Default' },
+                    { id: 2, monsterName: 'Goblin', hp: 20, status: 'Default' },
+                    { id: 3, monsterName: 'Dragon', hp: 5000, status: 'Default' }
                 ],
                 monBook: [
                     { monsterName: 'Slime', exp: 1, hp: 10 },
@@ -155,14 +159,33 @@
                     var max = this.monster.reduce(function(a, b) {
                         return a > b.id ? a : b.id
                     }, 0)
+                    var lenMax = this.monBook.length
+                    var idx = Math.floor(Math.random() * lenMax)
                     // push를 통해서 monster 배열에 새로운 내용을 추가한다.
                     // 몬스터 추가가 너무 단조로우므로
                     // 추가를 누르면 랜덤하게 몬스터들이 배치되게 만든다.
                     this.monster.push({
                         id: max + 1,
-                        monsterName: this.monsterName,
-                        hp: 100
+                        monsterName: this.monBook[idx].monsterName,
+                        hp: this.monBook[idx].hp,
+                        status: 'Default'
                     })
+                },
+                addManyMonster: function() {
+                    // 한 번에 100마리씩 몬스터를 추가한다.
+                    for(var i = 0; i < 100; i ++) {
+                        var max = this.monster.reduce(function(a, b) {
+                            return a > b.id ? a : b.id
+                        }, 0)
+                        var lenMax = this.monBook.length
+                        var idx = Math.floor(Math.random() * lenMax)
+                        this.monster.push({
+                            id: max + 1,
+                            monsterName: this.monBook[idx].monsterName,
+                            hp: this.monBook[idx].hp,
+                            status: 'Default'
+                        })
+                    }
                 },
                 doRemove: function(index) {
                     this.monster.splice(index, 1)
@@ -174,6 +197,9 @@
                     this.randomTest = Math.floor(
                         Math.random() * this.monBook.length
                     )
+                },
+                ThorHammer: function() {
+                    alert('광역기 쾅')
                 }
             },
             beforeCreate: function () {
