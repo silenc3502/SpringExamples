@@ -58,6 +58,7 @@
         <p>HP: {{ characterHp }}</p>
         <p>ATK: {{ characterAtk }}</p>
         <p>DEF: {{ characterDef }}</p>
+        <p>Money: {{ money }}</p>
 
         <!--
         이름
@@ -96,7 +97,51 @@
         <br><button v-on:click="genRandom()">
             Generate Random
         </button>
-        <p>{{ randomTest }}</p>
+        <p>{{ randomTest }}</p><br>
+        <label>
+            <input type="checkbox" v-model="boolTest"> {{ boolTest }}
+        </label>
+        <label>
+            <input type="checkbox" v-model="arrValue" value="X"> X
+        </label>
+        <label>
+            <input type="checkbox" v-model="arrValue" value="Y"> Y
+        </label>
+        <label>
+            <input type="checkbox" v-model="arrValue" value="Z"> Z
+        </label>
+        <p>{{ arrValue }}</p>
+        <label>
+            <input type="radio" v-model="radValue" value="A"> A
+        </label>
+        <label>
+            <input type="radio" v-model="radValue" value="B"> B
+        </label>
+        <label>
+            <input type="radio" v-model="radValue" value="C"> C
+        </label>
+        <p>{{ radValue }}</p>
+        <select v-model="optValue">
+            <option disabled="disabled">Select!</option>
+            <option value="I">I</option>
+            <option value="J">J</option>
+            <option value="K">K</option>
+        </select>
+        <p>{{ optValue }}</p>
+        <select v-model="optArrValue" multiple>
+            <option value="I">I</option>
+            <option value="J">J</option>
+            <option value="K">K</option>
+        </select>
+        <p>{{ optArrValue }}</p>
+        <!-- 상점 기능 구현에서 제일 중요한 것들을 추려보자!
+             1. 게임내에 소지금에 대한 정보가 필요하다.
+             2. 몹을 잡을때마다 일정 부분 획득할 수 있게 만들어줘야 한다.
+             3. 내 인벤토리 보기가 가능해야한다.
+             4. 상점에서 판매하는 품목 리스트가 보여야한다.
+             5. 구매에 대한 계산
+             6. 판매에 대한 계산 -->
+        <h3>상점</h3>
     </div>
     <script src="https://unpkg.com/vuex@2.0.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10">
@@ -148,7 +193,13 @@
                 onlyCalcDef: 0,
                 curExp: 0,
                 needExp: 10,
-                randomTest: 0
+                randomTest: 0,
+                boolTest: true,
+                arrValue: [],
+                radValue: '',
+                optValue: '',
+                optArrValue: [],
+                money: 500
             },
             methods: {
                 handleClick: function(event) {
