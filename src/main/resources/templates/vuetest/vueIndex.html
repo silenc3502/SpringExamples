@@ -214,7 +214,8 @@
                     }
                 },
                 omnislash: function(index) {
-                    alert('겁나 아픈거')
+                    // alert('겁나 아픈거')
+                    this.monster[index].hp = parseInt(this.monster[index].hp - this.characterAtk * 20)
                 }
             },
             beforeCreate: function () {
