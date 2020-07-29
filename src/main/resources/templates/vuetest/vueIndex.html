@@ -73,11 +73,16 @@
                 ID:{{ item.id }} {{ item.monsterName }} HP:{{ item.hp }} Status:{{ item.status }}
                 <span v-if="item.hp > 300">Strong</span>
                 <span v-if="item.hp < 50">Morbidity</span>
+                <!--
                 <button v-on:click="doRemove(index)">
                     Delete Monster
                 </button>
+                -->
                 <button v-on:click="doAttack(index)">
                     Attack
+                </button>
+                <button v-on:click="omnislash(index)">
+                    Omnislash
                 </button>
             </li>
             <!-- 몬스터의 hp가 0임을 확인하면
@@ -199,7 +204,17 @@
                     )
                 },
                 ThorHammer: function() {
-                    alert('광역기 쾅')
+                    var i
+                    // 모든 몬스터들에게
+                    for(i = 0; i < this.monster.length; i++) {
+                        this.monster[i].hp = parseInt(this.monster[i].hp - this.characterAtk * 1.5)
+                        if(this.monster[i].hp > 0) {
+                            this.monster[i].status = 'Stun'
+                        }
+                    }
+                },
+                omnislash: function(index) {
+                    alert('겁나 아픈거')
                 }
             },
             beforeCreate: function () {
