@@ -150,9 +150,19 @@
         <label>
             <input type="checkbox" v-model="myInven" v-on:click="test()">My Inventory
         </label>
-        <transition>
-            <p v-if="myInven">내 인벤토리 리스트들을 보여줘야 한다.</p>
-        </transition>
+        <table border="1">
+            <tr v-if="myInven">
+                <th align="center" width="20">No</th>
+                <th align="center" width="80">Name</th>
+                <th align="center" width="320">Effect</th>
+            </tr>
+            <tr v-if="myInven" v-for="(list, idx) in myInventory"
+                v-bind:key="list.itemName">
+                <th align="center" width="20">{{ idx + 1 }}</th>
+                <th align="center" width="80">{{ list.itemName }}</th>
+                <th align="center" width="320">{{ list.effect.desc }}</th>
+            </tr>
+        </table>
         <label>
             <input type="checkbox" v-model="shopView" v-on:click="shuffleShopList()">Shop List
         </label>
@@ -250,7 +260,8 @@
                 money: 500,
                 shopView: false,
                 myInven: false,
-                shopListValue: []
+                shopListValue: [],
+                myInventory: []
             },
             methods: {
                 handleClick: function(event) {
