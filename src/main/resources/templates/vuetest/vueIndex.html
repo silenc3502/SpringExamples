@@ -147,13 +147,13 @@
              6. 판매에 대한 계산 -->
         <h3>상점</h3>
         <label>
-            <input type="checkbox" v-model="myInven">My Inventory
+            <input type="checkbox" v-model="myInven" v-on:click="test()">My Inventory
         </label>
         <transition>
             <p v-if="myInven">내 인벤토리 리스트들을 보여줘야 한다.</p>
         </transition>
         <label>
-            <input type="checkbox" v-model="shopView">Shop List
+            <input type="checkbox" v-model="shopView" v-on:click="shuffleShopList()">Shop List
         </label>
         <transition>
             <table border="1">
@@ -162,6 +162,18 @@
                     <th align="center" width="80">Price</th>
                     <th align="center" width="320">Effect</th>
                     <th align="center" width="40">Buy</th>
+                </tr>
+                <tr v-if="shopView" v-for="list in shopList"
+                    v-bind:key="list.itemName">
+                    <th align="center" width="80">{{ list.itemName }}</th>
+                    <th align="center" width="80">{{ list.price }}</th>
+                    <th align="center" width="320">{{ list.effect.desc }}</th>
+                    <th align="center" width="40">
+                        <label>
+                            <input type="checkbox"
+                                   v-model="arrValue">
+                        </label>
+                    </th>
                 </tr>
             </table>
             <!-- <p v-if="shopView">상점의 물건들을 보여줘야 한다.</p> -->
@@ -216,6 +228,7 @@
                     { itemName: 'Sword', price: 1000000, effect: { desc: "weapon", atk: 100 } },
                     { itemName: 'Iron Sword', price: 20000000, effect: { desc: "weapon", atk: 200 } }
                 ],
+                shopList: [],
                 monsterName: 'Chimera',
                 characterName: '',
                 characterLv: 1,
@@ -302,6 +315,16 @@
                 omnislash: function(index) {
                     // alert('겁나 아픈거')
                     this.monster[index].hp = parseInt(this.monster[index].hp - this.characterAtk * 20)
+                },
+                test: function() {
+                    alert('check')
+                },
+                shuffleShopList: function() {
+                    // 상점에 새로운 아이템을 갱신하도록 만드는 위치
+                    for(var i = 0; i < 10; i++) {
+                        var randIdx = Math.floor(Math.random() * this.itemBook.length)
+                        this.shopList[i] = this.itemBook[randIdx]
+                    }
                 }
             },
             beforeCreate: function () {
