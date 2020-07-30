@@ -158,20 +158,23 @@
         <transition>
             <table border="1">
                 <tr v-if="shopView">
+                    <th align="center" width="20">No</th>
                     <th align="center" width="80">Name</th>
                     <th align="center" width="80">Price</th>
                     <th align="center" width="320">Effect</th>
                     <th align="center" width="40">Buy</th>
                 </tr>
-                <tr v-if="shopView" v-for="list in shopList"
+                <tr v-if="shopView" v-for="(list, idx) in shopList"
                     v-bind:key="list.itemName">
+                    <th align="center" width="20">{{ idx + 1 }}</th>
                     <th align="center" width="80">{{ list.itemName }}</th>
                     <th align="center" width="80">{{ list.price }}</th>
                     <th align="center" width="320">{{ list.effect.desc }}</th>
                     <th align="center" width="40">
                         <label>
                             <input type="checkbox"
-                                   v-model="arrValue">
+                                   v-model="shopListValue"
+                                   v-bind:value="idx">
                         </label>
                     </th>
                 </tr>
@@ -247,7 +250,8 @@
                 optArrValue: [],
                 money: 500,
                 shopView: false,
-                myInven: false
+                myInven: false,
+                shopListValue: []
             },
             methods: {
                 handleClick: function(event) {
