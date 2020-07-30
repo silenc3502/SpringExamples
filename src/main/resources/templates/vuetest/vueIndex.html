@@ -372,6 +372,7 @@
                         // 필요한 데이터들은 this.shopList에 있으며
                         // 또한 각각의 인덱스들은 shopListValue에서 얻는다.
                         for(var i = 0; i < this.shopListValue.length; i++) {
+                            // 계속 누적할 목적으로 push를 사용해서 값을 누적하도록 했음
                             this.myInventory.push({
                                 itemName: this.shopList[this.shopListValue[i]].itemName,
                                 effect: this.shopList[this.shopListValue[i]].effect
