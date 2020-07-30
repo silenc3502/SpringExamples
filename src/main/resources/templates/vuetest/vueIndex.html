@@ -335,7 +335,26 @@
                     }
                 },
                 calcBuy: function() {
-                    alert('Buy!')
+                    var tmpSum = 0
+                    // 구매하려고 하는 물건의 인덱스 번호를 가지고 있음
+                    // 가장 외부의 for Loop는 구매하려는 물건의 개수
+                    alert('calcBuy()')
+                    for(var i = 0; i < this.shopListValue.length; i++) {
+                        // console.log(this.shopListValue[i])
+                        // 가장 내부의 for Loop은 상점에 있는 물건의 개수
+                        for(var j = 0; j < this.shopList[j].length; j++) {
+                            if(this.shopListValue[i] == j) {
+                                tmpSum += this.shopList[j].price
+                                break
+                            }
+                        }
+                    }
+
+                    if(this.money - tmpSum >= 0) {
+                        this.money -= tmpSum
+                    } else {
+                        alert('돈읎다')
+                    }
                 }
             },
             beforeCreate: function () {
