@@ -364,8 +364,19 @@
                         }
                     }
 
+                    // 돈 계산하는 위치
                     if(this.money - tmpSum >= 0) {
                         this.money -= tmpSum
+
+                        // 돈 계산이 끝난 이후에 내용을 추가해주도록 한다.
+                        // 필요한 데이터들은 this.shopList에 있으며
+                        // 또한 각각의 인덱스들은 shopListValue에서 얻는다.
+                        for(var i = 0; i < this.shopListValue.length; i++) {
+                            this.myInventory.push({
+                                itemName: this.shopList[this.shopListValue[i]].itemName,
+                                effect: this.shopList[this.shopListValue[i]].effect
+                            })
+                        }
                     } else {
                         alert('돈읎다')
                     }
