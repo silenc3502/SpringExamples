@@ -147,10 +147,24 @@
              6. 판매에 대한 계산 -->
         <h3>상점</h3>
         <label>
-            <input type="checkbox" v-model="shopView">Shopping!
+            <input type="checkbox" v-model="myInven">My Inventory
         </label>
         <transition>
-            <p v-if="shopView">Shopping!</p>
+            <p v-if="myInven">내 인벤토리 리스트들을 보여줘야 한다.</p>
+        </transition>
+        <label>
+            <input type="checkbox" v-model="shopView">Shop List
+        </label>
+        <transition>
+            <table border="1">
+                <tr v-if="shopView">
+                    <th align="center" width="80">Name</th>
+                    <th align="center" width="80">Price</th>
+                    <th align="center" width="320">Effect</th>
+                    <th align="center" width="40">Buy</th>
+                </tr>
+            </table>
+            <!-- <p v-if="shopView">상점의 물건들을 보여줘야 한다.</p> -->
         </transition>
     </div>
     <script src="https://unpkg.com/vuex@2.0.0"></script>
@@ -219,7 +233,8 @@
                 optValue: '',
                 optArrValue: [],
                 money: 500,
-                shopView: false
+                shopView: false,
+                myInven: false
             },
             methods: {
                 handleClick: function(event) {
