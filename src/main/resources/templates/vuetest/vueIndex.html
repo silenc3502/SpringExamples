@@ -156,32 +156,30 @@
         <label>
             <input type="checkbox" v-model="shopView" v-on:click="shuffleShopList()">Shop List
         </label>
-        <transition>
-            <table border="1">
-                <tr v-if="shopView">
-                    <th align="center" width="20">No</th>
-                    <th align="center" width="80">Name</th>
-                    <th align="center" width="80">Price</th>
-                    <th align="center" width="320">Effect</th>
-                    <th align="center" width="40">Buy</th>
-                </tr>
-                <tr v-if="shopView" v-for="(list, idx) in shopList"
-                    v-bind:key="list.itemName">
-                    <th align="center" width="20">{{ idx + 1 }}</th>
-                    <th align="center" width="80">{{ list.itemName }}</th>
-                    <th align="center" width="80">{{ list.price }}</th>
-                    <th align="center" width="320">{{ list.effect.desc }}</th>
-                    <th align="center" width="40">
-                        <label>
-                            <input type="checkbox"
-                                   v-model="shopListValue"
-                                   v-bind:value="idx">
-                        </label>
-                    </th>
-                </tr>
-            </table>
-            <!-- <p v-if="shopView">상점의 물건들을 보여줘야 한다.</p> -->
-        </transition>
+        <button v-on:click="calcBuy()">Buy!</button>
+        <table border="1">
+            <tr v-if="shopView">
+                <th align="center" width="20">No</th>
+                <th align="center" width="80">Name</th>
+                <th align="center" width="80">Price</th>
+                <th align="center" width="320">Effect</th>
+                <th align="center" width="40">Buy</th>
+            </tr>
+            <tr v-if="shopView" v-for="(list, idx) in shopList"
+                v-bind:key="list.itemName">
+                <th align="center" width="20">{{ idx + 1 }}</th>
+                <th align="center" width="80">{{ list.itemName }}</th>
+                <th align="center" width="80">{{ list.price }}</th>
+                <th align="center" width="320">{{ list.effect.desc }}</th>
+                <th align="center" width="40">
+                    <label>
+                        <input type="checkbox"
+                               v-model="shopListValue"
+                               v-bind:value="idx">
+                    </label>
+                </th>
+            </tr>
+        </table>
     </div>
     <script src="https://unpkg.com/vuex@2.0.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10">
@@ -335,6 +333,9 @@
                         var randIdx = Math.floor(Math.random() * this.itemBook.length)
                         this.shopList[i] = this.itemBook[randIdx]
                     }
+                },
+                calcBuy: function() {
+                    alert('Buy!')
                 }
             },
             beforeCreate: function () {
