@@ -25,6 +25,9 @@
       </p>
       <p>{{ message }}</p>
       <button v-on:click="reverseMsg">Reverse Message</button>
+      <p>{{ message }}</p>
+      <input v-model="message"><br>
+      <button @click="incCnt">{{ cnt }}</button><br>
     </div>
   </div>
 </template>
@@ -44,12 +47,16 @@ export default {
         { text: 'JavaScript' },
         { text: 'Golang' },
         { text: 'C++' }
-      ]
+      ],
+      cnt: 0
     }
   },
   methods: {
     reverseMsg: function () {
       this.message = this.message.split('').reverse().join('')
+    },
+    incCnt: function () {
+      this.cnt++
     }
   }
 }
