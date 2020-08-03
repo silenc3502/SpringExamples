@@ -19,11 +19,12 @@
     </div>
     <h2>This is an Test Page</h2>
     <div id="app">
-      {{ message }}<br>
       <p v-if="seen">You can see it!</p>
       <p v-bind:key=todo v-for="todo in todos">
         {{ todo.text }}
       </p>
+      <p>{{ message }}</p>
+      <button v-on:click="reverseMsg">Reverse Message</button>
     </div>
   </div>
 </template>
@@ -44,6 +45,11 @@ export default {
         { text: 'Golang' },
         { text: 'C++' }
       ]
+    }
+  },
+  methods: {
+    reverseMsg: function () {
+      this.message = this.message.split('').reverse().join('')
     }
   }
 }
