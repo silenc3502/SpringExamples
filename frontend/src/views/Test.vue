@@ -1,3 +1,51 @@
 <template>
-  <p>test</p>
+  <div class="home">
+    <div id="header">
+      <router-link :to="{ name: 'Home' }"
+          class="nav-link"
+          active-class="active">
+        Home
+      </router-link>
+      <router-link :to="{ name: 'About' }"
+          class="nav-link"
+          active-class="active">
+        About Us
+      </router-link>
+      <router-link :to="{ name: 'Test' }"
+          class="nav-link"
+          active-class="active">
+        Test
+      </router-link>
+    </div>
+    <h2>This is an Test Page</h2>
+    <div id="app">
+      {{ message }}<br>
+      <p v-if="seen">You can see it!</p>
+      <p v-bind:key=todo v-for="todo in todos">
+        {{ todo.text }}
+      </p>
+    </div>
+  </div>
 </template>
+
+<script>
+import Vue from 'vue'
+import cookies from 'vue-cookies'
+
+Vue.use(cookies)
+
+export default {
+  data: function () {
+    return {
+      message: 'Test Page',
+      seen: true,
+      todos: [
+        { text: 'JavaScript' },
+        { text: 'Golang' },
+        { text: 'C++' }
+      ]
+    }
+  }
+}
+
+</script>
