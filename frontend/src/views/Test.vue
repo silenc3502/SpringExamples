@@ -52,12 +52,21 @@
           <td>{{ key }}</td>
         </tr>
       </table>
+
+      <!-- this.$store가 결국 Vuex를 사용하겠단 의미 -->
+      <b>count: {{ this.$store.state.count }}</b><br>
+      <b>count^2: {{ this.$store.getters.count }}</b><br>
+      <b>weight: {{ this.$store.getters.weight }}</b><br>
+      <input type="button" @click="increment()" value="inc"/>
+      <input type="button" @click="decrement()" value="dec"/>
     </div>
   </div>
 </template>
 
 <script>
 import Vue from 'vue'
+/* eslint-disable no-unused-vars */
+import store from '../store'
 import cookies from 'vue-cookies'
 
 Vue.use(cookies)
@@ -97,7 +106,18 @@ export default {
     },
     incCnt: function () {
       this.cnt++
+    },
+    increment: function () {
+      this.$store.commit('increment')
+      this.$cookies.set('value', this.$store.state.count, '1h')
+    },
+    decrement: function () {
+      this.$store.commit('decrement')
+      this.$cookies.set('value', this.$store.state.count, '1h')
     }
+  },
+  created: function () {
+    this.$store.state.count = this.$cookies.get('value')
   }
 }
 
