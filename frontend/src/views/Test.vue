@@ -118,6 +118,8 @@ export default {
       this.$cookies.set('value', this.$store.state.count, '1h')
     },
     randomNumber: function () {
+      // dispatch는 무조건 action으로 간다.
+      // commit은 비동기 처리가 가능하다.
       this.$store.dispatch('generateRandomNumber')
     }
   },
