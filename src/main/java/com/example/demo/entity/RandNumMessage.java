@@ -16,4 +16,8 @@ public class RandNumMessage {
         this.randNumber = random.nextInt(32) + 3;
         log.info("RandomMessage(): " + randNumber);
     }
+
+    public Integer getRandNumber() {
+        return randNumber;
+    }
 }

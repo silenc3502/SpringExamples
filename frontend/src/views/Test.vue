@@ -58,7 +58,9 @@
       <b>count^2: {{ this.$store.getters.count }}</b><br>
       <b>weight: {{ this.$store.getters.weight }}</b><br>
       <input type="button" @click="increment()" value="inc"/>
-      <input type="button" @click="decrement()" value="dec"/>
+      <input type="button" @click="decrement()" value="dec"/><br>
+      <b>random: {{ this.$store.getters.random }}</b><br>
+      <input type="button" @click="randomNumber()" value="random"/><br>
     </div>
   </div>
 </template>
@@ -114,6 +116,9 @@ export default {
     decrement: function () {
       this.$store.commit('decrement')
       this.$cookies.set('value', this.$store.state.count, '1h')
+    },
+    randomNumber: function () {
+      this.$store.dispatch('generateRandomNumber')
     }
   },
   created: function () {
