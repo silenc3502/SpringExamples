@@ -61,6 +61,9 @@
       <input type="button" @click="decrement()" value="dec"/><br>
       <b>random: {{ this.$store.getters.random }}</b><br>
       <input type="button" @click="randomNumber()" value="random"/><br>
+
+      <global-component v-bind:initial-counter="counter">
+      </global-component>
     </div>
   </div>
 </template>
@@ -70,12 +73,16 @@ import Vue from 'vue'
 /* eslint-disable no-unused-vars */
 import store from '../store'
 import cookies from 'vue-cookies'
+import GlobalComponent from '../components/GlobalComponent.vue'
+
+Vue.component(GlobalComponent.name, GlobalComponent)
 
 Vue.use(cookies)
 
 export default {
   data: function () {
     return {
+      counter: 3,
       msg: 'Test',
       count: 7,
       list: function () {
