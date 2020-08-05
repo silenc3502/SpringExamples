@@ -1,12 +1,18 @@
 <template>
   <div>
     <h3>Todo Footer</h3>
-    <button>Delete All</button>
+    <button v-on:click="clearTodo">Delete All</button>
   </div>
 </template>
 
 <script>
-export default { }
+export default {
+  methods: {
+    clearTodo () {
+      console.log('clearTodo')
+    }
+  }
+}
 </script>
 
 <style scoped>
