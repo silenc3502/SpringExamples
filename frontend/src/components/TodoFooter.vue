@@ -1,6 +1,7 @@
 <template>
   <div>
-    <h1>Todo Footer</h1>
+    <h3>Todo Footer</h3>
+    <button>Delete All</button>
   </div>
 </template>
 
