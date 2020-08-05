@@ -5,11 +5,11 @@
 <script>
 export default {
   name: 'global-component',
-  props: ['initialCounter'],
+  props: ['initialTest'],
   template: '<button @click="addCounter">{{ counter }}</button>',
   data: function () {
     return {
-      counter: this.initialCounter
+      counter: this.initialTest
     }
   },
   methods: {
