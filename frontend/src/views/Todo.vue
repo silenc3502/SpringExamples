@@ -13,7 +13,8 @@ import TodoHeader from '../components/TodoHeader.vue'
 import TodoInput from '../components/TodoInput.vue'
 import TodoList from '../components/TodoList.vue'
 import TodoFooter from '../components/TodoFooter.vue'
-import store from '../store'
+// import store from '../store'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'Todo',
@@ -29,23 +30,40 @@ export default {
   //   }
   // },
   methods: {
-    clearAll () {
-      // this.todoItems = []
-      store.dispatch('clearAll')
+    ...mapActions([
+      'clearAll',
+      'addTodo',
+      'removeTodo'
+    ]),
+    onClearAll () {
+      this.clearAll()
     },
-    addTodo (todoItem) {
-      // this.todoItems.push(todoItem)
-      store.dispatch('addTodo', todoItem)
+    onAddTodo (todoItem) {
+      this.addTodo(todoItem)
     },
-    removeTodo (todoItem, idx) {
-      // this.todoItems.splice(idx, 1)
-      store.dispatch('removeTodo', idx)
+    onRemoveTodo (todoItem, idx) {
+      this.removeTodo(idx)
     }
+    // clearAll () {
+    //   this.todoItems = []
+    //   store.dispatch('clearAll')
+    // },
+    // addTodo (todoItem) {
+    //   this.todoItems.push(todoItem)
+    //   store.dispatch('addTodo', todoItem)
+    // },
+    // removeTodo (todoItem, idx) {
+    //   this.todoItems.splice(idx, 1)
+    //   store.dispatch('removeTodo', idx)
+    // }
   },
   computed: {
-    todoItems () {
-      return store.state.todoItems
-    }
+    ...mapState([
+      'todoItems'
+    ])
+    // todoItems () {
+    //   return store.state.todoItems
+    // }
   }
 }
 </script>
