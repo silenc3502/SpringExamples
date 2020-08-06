@@ -30,13 +30,16 @@ export default {
   // },
   methods: {
     clearAll () {
-      this.todoItems = []
+      // this.todoItems = []
+      store.dispatch('clearAll')
     },
     addTodo (todoItem) {
-      this.todoItems.push(todoItem)
+      // this.todoItems.push(todoItem)
+      store.dispatch('addTodo', todoItem)
     },
     removeTodo (todoItem, idx) {
-      this.todoItems.splice(idx, 1)
+      // this.todoItems.splice(idx, 1)
+      store.dispatch('removeTodo', idx)
     }
   },
   computed: {
