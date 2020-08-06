@@ -3,10 +3,14 @@ import {
   failGenRandNum,
   ADD_TODO,
   REMOVE_TODO,
-  CLEAR_ALL
+  CLEAR_ALL,
+  RESTORE
 } from './mutation-types'
 
 export default {
+  [RESTORE] (state, { todoItems }) {
+    state.todoItems = todoItems
+  },
   increment (state) {
     state.count++
   },

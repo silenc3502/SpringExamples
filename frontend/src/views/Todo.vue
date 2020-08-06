@@ -36,19 +36,27 @@ export default {
       'clearAll',
       'addTodo',
       'removeTodo',
-      'generateRandomNumber'
+      'generateRandomNumber',
+      'save',
+      'restore'
     ]),
     onClearAll () {
       this.clearAll()
+      this.save()
     },
     onAddTodo (todoItem) {
       this.addTodo(todoItem)
+      this.save()
     },
     onRemoveTodo (todoItem, idx) {
       this.removeTodo(idx)
+      this.save()
     },
     randomNumber () {
       this.generateRandomNumber()
+    },
+    created () {
+      this.restore()
     }
     // clearAll () {
     //   this.todoItems = []

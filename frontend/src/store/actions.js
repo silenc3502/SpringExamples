@@ -3,12 +3,27 @@ import {
   failGenRandNum,
   ADD_TODO,
   REMOVE_TODO,
-  CLEAR_ALL
+  CLEAR_ALL,
+  RESTORE
 } from './mutation-types'
 
 import axios from 'axios'
 
 export default {
+  save ({ state }) {
+    const data = {
+      todoItems: state.todoItems
+    }
+    localStorage.setItem('todo-app-data', JSON.stringify(data))
+  },
+  restore ({ commit }) {
+    const data = localStorage.getItem('todo-app-data')
+
+    if (data) {
+      console.log('data: ' + JSON.parse(data))
+      commit(RESTORE, JSON.parse(data))
+    }
+  },
   generateRandomNumber ({ commit }) {
     console.log(commit)
 
