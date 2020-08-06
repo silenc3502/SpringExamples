@@ -8,7 +8,8 @@ export default new Vuex.Store({
   state: {
     count: 0,
     weight: 2,
-    random: 0
+    random: 0,
+    todoItems: []
   },
   mutations: {
     increment (state) {
@@ -22,6 +23,15 @@ export default new Vuex.Store({
     },
     failGenRandNum () {
       alert('망함')
+    },
+    ADD_TODO (state, todoItems) {
+      state.todoItems.push(todoItems)
+    },
+    REMOVE_TODO (state, idx) {
+      state.todoItems.splice(idx, 1)
+    },
+    CLEAR_ALL (state) {
+      state.todoItems = []
     }
   },
   getters: {
@@ -47,6 +57,15 @@ export default new Vuex.Store({
         .catch((res) => {
           commit('failGenRandNum', res)
         })
+    },
+    addTodo (context, payload) {
+      context.commit('ADD_TODO', payload)
+    },
+    removeTodo (context, payload) {
+      context.commit('REMOVE_TODO', payload)
+    },
+    clearAll (context, payload) {
+      context.commit('CLEAR_ALL')
     }
   },
   modules: {

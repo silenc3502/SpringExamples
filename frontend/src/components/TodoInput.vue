@@ -18,8 +18,9 @@ export default {
   methods: {
     addTodo () {
       if (this.newTodoItem !== '') {
-        this.newTodoItem.trim()
-        console.log('addTodo')
+        var value = this.newTodoItem && this.newTodoItem.trim()
+        console.log('addTodo: ' + value)
+        this.$emit('addTodo', value)
         this.clearInput()
       }
     },
