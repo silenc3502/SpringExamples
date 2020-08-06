@@ -1,10 +1,12 @@
 <template>
   <div class="todo">
     <todo-header></todo-header>
-    <todo-input v-on:addTodo="addTodo"></todo-input>
+    <todo-input v-on:addTodo="onAddTodo"></todo-input>
     <todo-list v-bind:todoItems="todoItems"
-              v-on:removeTodo="removeTodo"></todo-list>
-    <todo-footer v-on:removeAll="clearAll"></todo-footer>
+              v-on:removeTodo="onRemoveTodo"></todo-list>
+    <todo-footer v-on:removeAll="onClearAll"></todo-footer>
+    <b>random: {{ this.$store.getters.random }}</b><br>
+    <input type="button" @click="randomNumber()" value="random"/><br>
   </div>
 </template>
 
@@ -33,7 +35,8 @@ export default {
     ...mapActions([
       'clearAll',
       'addTodo',
-      'removeTodo'
+      'removeTodo',
+      'generateRandomNumber'
     ]),
     onClearAll () {
       this.clearAll()
@@ -43,6 +46,9 @@ export default {
     },
     onRemoveTodo (todoItem, idx) {
       this.removeTodo(idx)
+    },
+    randomNumber () {
+      this.generateRandomNumber()
     }
     // clearAll () {
     //   this.todoItems = []
