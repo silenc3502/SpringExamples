@@ -2,9 +2,9 @@
   <div class="todo">
     <todo-header></todo-header>
     <todo-input v-on:addTodo="onAddTodo"></todo-input>
-    <todo-list v-bind:todoItems="todoItems"
-              v-on:removeTodo="onRemoveTodo"
-              v-on:updateTodo="onEditTodo">
+    <todo-list v-on:removeTodo="onRemoveTodo"
+              v-on:updateTodo="onEditTodo"
+              v-on:toggleTodoStatus="onToggleTodoStatus">
     </todo-list>
     <todo-footer v-on:removeAll="onClearAll"></todo-footer>
     <b>random: {{ this.$store.getters.random }}</b><br>
@@ -17,8 +17,7 @@ import TodoHeader from '../components/TodoHeader.vue'
 import TodoInput from '../components/TodoInput.vue'
 import TodoList from '../components/TodoList.vue'
 import TodoFooter from '../components/TodoFooter.vue'
-// import store from '../store'
-import { mapState, mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'Todo',
@@ -28,12 +27,11 @@ export default {
     'todo-list': TodoList,
     'todo-footer': TodoFooter
   },
-  // data () {
-  //   return {
-  //     todoItems: []
-  //   }
-  // },
   methods: {
+    ...mapMutations([
+      SET_EDITING_ID,
+      RESET_EDITING_ID
+    ]),
     ...mapActions([
       'clearAll',
       'addTodo',
@@ -41,10 +39,11 @@ export default {
       'generateRandomNumber',
       'save',
       'restore',
-      'edit'
+      'editTodo',
+      'toggleTodoStatus'
     ]),
-    onEditTodo (content, idx) {
-      this.editTodo({ idx, content })
+    onEditTodo (content, id) {
+      this.editTodo({ id, content })
       this.save()
     },
     onClearAll () {
@@ -52,10 +51,13 @@ export default {
       this.save()
     },
     onAddTodo (content) {
-      const isEditing = false
-      const todoItem = { isEditing, content }
+      const todoItem = { content }
 
       this.addTodo(todoItem)
+      this.save()
+    },
+    onToggleTodoStatus (id) {
+      this.toggleTodoStatus(id)
       this.save()
     },
     onRemoveTodo (todoItem, idx) {

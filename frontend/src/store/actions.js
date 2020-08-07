@@ -5,7 +5,8 @@ import {
   REMOVE_TODO,
   CLEAR_ALL,
   RESTORE,
-  EDIT_TODO
+  EDIT_TODO,
+  TOGGLE_TODO_STATUS
 } from './mutation-types'
 
 import axios from 'axios'
@@ -14,9 +15,13 @@ export default {
   editTodo ({ commit }, payload) {
     commit(EDIT_TODO, payload)
   },
+  toggleTodoStatus ({ commit }, id) {
+    commit(TOGGLE_TODO_STATUS, id)
+  },
   save ({ state }) {
     const data = {
       todoItems: state.todoItems
+      nextTodoId: state.nextTodoId
     }
     localStorage.setItem('todo-app-data', JSON.stringify(data))
   },
