@@ -51,7 +51,10 @@ export default {
       this.clearAll()
       this.save()
     },
-    onAddTodo (todoItem) {
+    onAddTodo (content) {
+      const isEditing = false
+      const todoItem = { isEditing, content }
+
       this.addTodo(todoItem)
       this.save()
     },
