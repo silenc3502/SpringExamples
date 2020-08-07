@@ -4,12 +4,16 @@ import {
   ADD_TODO,
   REMOVE_TODO,
   CLEAR_ALL,
-  RESTORE
+  RESTORE,
+  EDIT_TODO
 } from './mutation-types'
 
 import axios from 'axios'
 
 export default {
+  editTodo ({ commit }, payload) {
+    commit(EDIT_TODO, payload)
+  },
   save ({ state }) {
     const data = {
       todoItems: state.todoItems

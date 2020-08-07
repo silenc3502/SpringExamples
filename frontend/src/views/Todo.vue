@@ -3,7 +3,9 @@
     <todo-header></todo-header>
     <todo-input v-on:addTodo="onAddTodo"></todo-input>
     <todo-list v-bind:todoItems="todoItems"
-              v-on:removeTodo="onRemoveTodo"></todo-list>
+              v-on:removeTodo="onRemoveTodo"
+              v-on:updateTodo="onEditTodo">
+    </todo-list>
     <todo-footer v-on:removeAll="onClearAll"></todo-footer>
     <b>random: {{ this.$store.getters.random }}</b><br>
     <input type="button" @click="randomNumber()" value="random"/><br>
@@ -38,8 +40,13 @@ export default {
       'removeTodo',
       'generateRandomNumber',
       'save',
-      'restore'
+      'restore',
+      'edit'
     ]),
+    onEditTodo (content, idx) {
+      this.editTodo({ idx, content })
+      this.save()
+    },
     onClearAll () {
       this.clearAll()
       this.save()

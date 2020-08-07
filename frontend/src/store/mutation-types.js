@@ -5,3 +5,4 @@ export const failGenRandNum = 'failGenRandNum'
 export const successGenRandNum = 'successGenRandNum'
 
 export const RESTORE = 'RESTORE'
+export const EDIT_TODO = 'EDIT_TODO'

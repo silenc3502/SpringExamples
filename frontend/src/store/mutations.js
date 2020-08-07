@@ -4,10 +4,16 @@ import {
   ADD_TODO,
   REMOVE_TODO,
   CLEAR_ALL,
-  RESTORE
+  RESTORE,
+  EDIT_TODO
 } from './mutation-types'
 
 export default {
+  [EDIT_TODO] (state, payload) {
+    const { idx, content } = payload
+    const isEditing = false
+    state.todoItems.splice(idx, 1, { isEditing, content })
+  },
   [RESTORE] (state, { todoItems }) {
     state.todoItems = todoItems
   },
