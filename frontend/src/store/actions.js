@@ -20,7 +20,7 @@ export default {
   },
   save ({ state }) {
     const data = {
-      todoItems: state.todoItems
+      todoItems: state.todoItems,
       nextTodoId: state.nextTodoId
     }
     localStorage.setItem('todo-app-data', JSON.stringify(data))

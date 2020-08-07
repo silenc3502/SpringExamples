@@ -1,9 +1,9 @@
 import {
-  successGenRandNum,
-  failGenRandNum,
   ADD_TODO,
   REMOVE_TODO,
   CLEAR_ALL,
+  successGenRandNum,
+  failGenRandNum,
   RESTORE,
   EDIT_TODO,
   SET_EDITING_ID,
@@ -13,6 +13,48 @@ import {
 } from './mutation-types'
 
 export default {
+  [ADD_TODO] (state, payload) {
+    const { content } = payload
+    state.todoItems.push({ id: state.nextTodoId, content, done: false })
+    state.nextTodoId++
+  },
+  [REMOVE_TODO] (state, id) {
+    const targetIndex = state.todoItems.findIndex(v => v.id === id)
+    state.todoItems.splice(targetIndex, 1)
+  },
+  [CLEAR_ALL] (state) {
+    console.log('CLEAR_ALL')
+    state.todoItems = []
+  },
+  [successGenRandNum] (state, payload) {
+    console.log('payload = ' + payload)
+    state.random = payload
+  },
+  [failGenRandNum] () {
+    console.log('Error')
+  },
+  increment (state) {
+    state.count++
+  },
+  decrement (state) {
+    state.count--
+  },
+  [RESTORE] (state, { todoItems, nextTodoId }) {
+    state.todoItems = todoItems
+    state.nextTodoId = nextTodoId
+  },
+  [EDIT_TODO] (state, payload) {
+    const { id, content } = payload
+    const targetIndex = state.todoItems.findIndex(v => v.id === id)
+    const targetTodoItem = state.todoItems[targetIndex]
+    state.todoItems.splice(targetIndex, 1, { ...targetTodoItem, content })
+  },
+  [SET_EDITING_ID] (state, id) {
+    state.editingId = id
+  },
+  [RESET_EDITING_ID] (state) {
+    state.editingId = 0
+  },
   [TOGGLE_TODO_STATUS] (state, id) {
     const filtered = state.todoItems.filter(todoItem => {
       return todoItem.id === id
@@ -24,44 +66,5 @@ export default {
   },
   [SET_FILTER] (state, filter) {
     state.filter = filter
-  },
-  [SET_EDITING_ID] (state, id) {
-    state.editingId = id
-  },
-  [RESET_EDITING_ID] (state) {
-    state.editingId = 0
-  },
-  [EDIT_TODO] (state, payload) {
-    const { id, content } = payload
-    const targetIdx = state.todoItems.findIndex(v => v.id === id)
-    const targetTodoItem = state.todoItems[targetIdx]
-    // JavaScript에서 ...은 배열등에서 값을 가져올 때
-    // 아직 처리하지 않은게 있다면 남은 모든것을 가져온다.
-    state.todoItems.splice(targetIdx, 1, { ...targetTodoItem, content })
-  },
-  [RESTORE] (state, { todoItems, nextTodoId }) {
-    state.todoItems = todoItems
-    state.nextTodoId = nextTodoId
-  },
-  increment (state) {
-    state.count++
-  },
-  decrement (state) {
-    state.count--
-  },
-  [successGenRandNum] (state, payload) {
-    state.random = payload
-  },
-  [failGenRandNum] () {
-    alert('망함')
-  },
-  [ADD_TODO] (state, todoItem) {
-    state.todoItems.push(todoItem)
-  },
-  [REMOVE_TODO] (state, idx) {
-    state.todoItems.splice({ id: state.nextTodoId, content, done: false })
-  },
-  [CLEAR_ALL] (state) {
-    state.todoItems = []
   }
 }
