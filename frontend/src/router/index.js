@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import About from '../views/About.vue'
 import Test from '../views/Test.vue'
 import Todo from '../views/Todo.vue'
+import Concave from '../views/Concave.vue'
 
 Vue.use(VueRouter)
 
@@ -31,6 +32,13 @@ const routes = [
     path: '/todo',
     name: 'Todo',
     component: Todo
+  },
+  {
+    path: '/concave',
+    name: 'Concave',
+    components: {
+      Concave
+    }
   }
 ]
 
