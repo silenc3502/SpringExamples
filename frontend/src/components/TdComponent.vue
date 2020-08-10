@@ -7,7 +7,7 @@ export default {
   data () {
     return {
       game: {
-        propTurn: this.turn
+        propTurn: this.turn,
         propWin: this.winner
       }
     }

@@ -10,7 +10,7 @@
         v-on:updateTurn="updateTurn"
         v-on:updateTableData="updateTableData"
         v-on:updateWinner="updateWinner"
-        v-model="propTurn"
+        v-model="propTurn">
     </td-component>
   </tr>
 </template>
@@ -24,7 +24,7 @@ export default {
   },
   data () {
     return {
-      propTurn: this.turn
+      propTurn: this.turn,
       propWin: this.winner
     }
   },
