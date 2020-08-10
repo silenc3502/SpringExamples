@@ -13,6 +13,7 @@ export default {
     }
   },
   props: {
+    // GlobalComponent ===> global-component
     cellData: String,
     rowIndex: Number,
     cellIndex: Number,
@@ -55,6 +56,7 @@ export default {
       }
       if (win) {
         this.game.propWin = this.turn
+        // 하위에 데이터 전달
         this.$emit('updateWinner', this.game.propWin)
         this.$emit('updateTurn', 'O')
         this.$emit('updateTableData')
