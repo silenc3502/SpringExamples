@@ -37,7 +37,7 @@ const routes = [
     path: '/concave',
     name: 'Concave',
     components: {
-      Concave
+      default: Concave
     }
   }
 ]

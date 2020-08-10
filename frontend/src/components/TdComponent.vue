@@ -24,33 +24,35 @@ export default {
     onClickTd () {
       if (this.cellData) return
       this.$set(this.tableData[this.rowIndex], this.cellIndex, this.turn)
-
       let win = false
-
-      if (this.tableData[this.rowIndex][0] === this.turn &&
-          this.tableData[this.rowIndex][1] === this.turn &&
-          this.tableData[this.rowIndex][2] === this.turn) {
+      if (
+        this.tableData[this.rowIndex][0] === this.turn &&
+        this.tableData[this.rowIndex][1] === this.turn &&
+        this.tableData[this.rowIndex][2] === this.turn
+      ) {
         win = true
       }
-
-      if (this.tableData[0][this.cellIndex] === this.turn &&
-          this.tableData[1][this.cellIndex] === this.turn &&
-          this.tableData[2][this.cellIndex] === this.turn) {
+      if (
+        this.tableData[0][this.cellIndex] === this.turn &&
+        this.tableData[1][this.cellIndex] === this.turn &&
+        this.tableData[2][this.cellIndex] === this.turn
+      ) {
         win = true
       }
-
-      if (this.tableData[0][0] === this.turn &&
-          this.tableData[1][1] === this.turn &&
-          this.tableData[2][2] === this.turn) {
+      if (
+        this.tableData[0][0] === this.turn &&
+        this.tableData[1][1] === this.turn &&
+        this.tableData[2][2] === this.turn
+      ) {
         win = true
       }
-
-      if (this.tableData[0][2] === this.turn &&
-          this.tableData[1][1] === this.turn &&
-          this.tableData[2][0] === this.turn) {
+      if (
+        this.tableData[0][2] === this.turn &&
+        this.tableData[1][1] === this.turn &&
+        this.tableData[2][0] === this.turn
+      ) {
         win = true
       }
-
       if (win) {
         this.game.propWin = this.turn
         this.$emit('updateWinner', this.game.propWin)
@@ -58,7 +60,6 @@ export default {
         this.$emit('updateTableData')
       } else {
         let all = true
-        // 모든 셀들이 체크가 되었는가 ?
         this.tableData.forEach(row => {
           row.forEach(cell => {
             if (!cell) {
@@ -66,7 +67,6 @@ export default {
             }
           })
         })
-
         if (all) {
           this.propWin = ''
           this.$emit('updateTurn', 'O')
@@ -77,6 +77,13 @@ export default {
         }
       }
     }
+  },
+  mounted: function () {
+    console.log('tableData: ' + this.tableData +
+                ', turn: ' + this.turn +
+                ', winner: ' + this.winner)
   }
 }
 </script>
+
+<style></style>

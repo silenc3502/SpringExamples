@@ -1,23 +1,23 @@
 <template>
   <table>
-    <tr-component v-for="(rowData, index) in tableData"
-        :key="index"
-        :row-data="rowData"
-        :row-index="index"
-        :table-data="tableData"
-        :turn="turn"
-        :winner="winner"
-        v-on:updateTurn="updateTurn"
-        v-on:updateTableData="updateTableData"
-        v-on:updateWinner="updateWinner"
-        v-model="propTurn">
-    </tr-component>
+    <tr-component
+      v-for="(rowData, index) in tableData"
+      :key="index"
+      :row-data="rowData"
+      :row-index="index"
+      :table-data="tableData"
+      :turn="turn"
+      :winner="winner"
+      v-on:updateTurn="updateTurn"
+      v-on:updateTableData="updateTableData"
+      v-on:updateWinner="updateWinner"
+      v-model="propTurn"
+    ></tr-component>
   </table>
 </template>
 
 <script>
-import TrComponent from '../components/TrComponent.vue'
-
+import TrComponent from './TrComponent'
 export default {
   data () {
     return {
@@ -61,8 +61,8 @@ table {
 }
 td {
   border: 1px solid black;
-  width: 40px;
-  height: 40px;
+  width: 80px;
+  height: 80px;
   text-align: center;
 }
 </style>

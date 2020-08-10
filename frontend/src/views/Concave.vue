@@ -1,9 +1,9 @@
 <template>
-  <div class="concave">
+  <div class="tictactoe">
     <div>{{ turn }}님의 턴입니다.</div>
     <table-component :table-data="tableData"
-        v-bind:turn="turn"
-        v-bind:winner="winner"
+        :turn="turn"
+        :winner="winner"
         v-on:updateTurn="updateTurn"
         v-on:updateTableData="updateTableData"
         v-on:updateWinner="updateWinner">
@@ -21,7 +21,7 @@ export default {
   },
   data () {
     return {
-      turn: '0',
+      turn: 'O',
       winner: '',
       tableData: [
         ['', '', ''],
@@ -46,6 +46,9 @@ export default {
         ['', '', ''],
         ['', '', '']
       ]
+    },
+    updateWinner: function (val) {
+      this.winner = val
     }
   }
 }
