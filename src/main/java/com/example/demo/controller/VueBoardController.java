@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import com.example.demo.entity.VueBoard;
+import com.example.demo.service.VueBoardService;
 import lombok.extern.java.Log;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +20,7 @@ import java.util.List;
 @RequestMapping("/boards")
 @CrossOrigin(origins = "http://localhost:8080", allowedHeaders = "*")
 public class VueBoardController {
-    static final Logger log = LoggerFactory.getLogger(VueBoardController.class);
+    //static final Logger log = LoggerFactory.getLogger(VueBoardController.class);
 
     @Autowired
     private VueBoardService service;
