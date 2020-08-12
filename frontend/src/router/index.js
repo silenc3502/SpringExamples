@@ -61,14 +61,14 @@ const routes = [
     }
   },
   {
-    path: '/board/boardNo',
+    path: '/board/:boardNo',
     name: 'BoardReadPage',
     components: {
       default: BoardReadPage
     }
   },
   {
-    path: '/board/boardNo/edit',
+    path: '/board/:boardNo/edit',
     name: 'BoardModifyPage',
     components: {
       default: BoardModifyPage
