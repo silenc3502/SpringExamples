@@ -10,7 +10,8 @@ import {
   RESET_EDITING_ID,
   TOGGLE_TODO_STATUS,
   SET_FILTER,
-  FETCH_BOARD_LIST
+  FETCH_BOARD_LIST,
+  FETCH_BOARD
 } from './mutation-types'
 
 export default {
@@ -74,5 +75,8 @@ export default {
   },
   [FETCH_BOARD_LIST] (state, boards) {
     state.boards = boards
+  },
+  [FETCH_BOARD] (state, board) {
+    state.board = board
   }
 }

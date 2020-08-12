@@ -18,8 +18,7 @@ public class VueBoardServiceImpl implements  VueBoardService {
     }
     @Override
     public VueBoard read(Long boardNo) throws Exception {
-        //return repository.read(boardNo);
-        return null;
+        return repository.read(boardNo);
     }
     @Override
     public void modify(VueBoard board) throws Exception {

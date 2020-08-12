@@ -65,6 +65,9 @@ const routes = [
     name: 'BoardReadPage',
     components: {
       default: BoardReadPage
+    },
+    props: {
+      default: true
     }
   },
   {
@@ -72,6 +75,10 @@ const routes = [
     name: 'BoardModifyPage',
     components: {
       default: BoardModifyPage
+    },
+    props: {
+      // 이 옵션을 설정하면 route.params가 컴포넌트의 props에 자동 설정됨
+      default: true
     }
   }
 ]
