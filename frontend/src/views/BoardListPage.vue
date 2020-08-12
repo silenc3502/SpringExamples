@@ -4,7 +4,7 @@
     <router-link :to="{ name: 'BoardRegisterPage' }">
       Create New Board
     </router-link>
-    <board-list/>
+    <board-list :boards="boards"/>
   </div>
 </template>
 
