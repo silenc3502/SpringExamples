@@ -40,6 +40,44 @@ public class VueBoardRepository {
         board.setBoardNo(keyHolder.getKey().longValue());
     }
 
+    public VueBoard read(Long boardNo) throws Exception {
+        List<VueBoard> results = jdbcTemplate.query(
+            "select board_no, title, content, writer, reg_date " +
+                    "from cafe_board where board_no = ?",
+            new RowMapper<VueBoard>() {
+                @Override
+                public VueBoard mapRow(ResultSet rs, int rowNum)
+                        throws SQLException {
+                    VueBoard board = new VueBoard();
+
+                    board.setBoardNo(rs.getInt("board_no"));
+                    board.setTitle(rs.getString("title"));
+                    board.setContent(rs.getString("content"));
+                    board.setWriter(rs.getString("writer"));
+                    board.setRegDate(rs.getDate("reg_date"));
+
+                    System.out.println("VueBoardRepository: " + board);
+
+                    return board;
+                }
+            }, boardNo
+        );
+
+        return results.isEmpty() ? null : results.get(0);
+    }
+
+    public void update(VueBoard board) throws Exception {
+        String query = "update cafe_board set title = ?, content = ? " +
+                "where board_no = ?";
+        jdbcTemplate.update(query, board.getTitle(),
+                board.getContent(), board.getBoardNo());
+    }
+
+    public void delete(Long boardNo) throws Exception {
+        String query = "delete from cafe_board where board_no = ?";
+        jdbcTemplate.update(query, boardNo);
+    }
+
     public List<VueBoard> list() throws Exception {
         List<VueBoard> results = jdbcTemplate.query(
                 "select board_no, title, content, writer, reg_date from cafe_board " +

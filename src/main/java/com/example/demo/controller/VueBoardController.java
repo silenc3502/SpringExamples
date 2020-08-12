@@ -31,6 +31,7 @@ public class VueBoardController {
         log.info("read()");
 
         VueBoard board = service.read(boardNo);
+        System.out.println("VueBoardController: " + board);
 
         return new ResponseEntity<VueBoard>(board, HttpStatus.OK);
     }
