@@ -10,11 +10,21 @@
 
 <script>
 import BoardList from '@/components/BoardList'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'BoardListPage',
   components: {
     BoardList
+  },
+  computed: {
+    ...mapState(['boards'])
+  },
+  mounted () {
+    this.fetchBoardList()
+  },
+  methods: {
+    ...mapActions(['fetchBoardList'])
   }
 }
 
