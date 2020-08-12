@@ -24,7 +24,7 @@ export default {
           alert('Register Success')
           this.$router.push({
             name: 'BoardReadPage',
-            params: { boardNo: res.data.boardNo }
+            params: { boardNo: res.data.boardNo.toString() }
           })
         })
         .catch(err => {

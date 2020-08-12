@@ -27,6 +27,7 @@ public class VueBoardServiceImpl implements  VueBoardService {
     }
     @Override
     public void modify(VueBoard board) throws Exception {
+        log.info("VueBoardService modify(board): " + board);
         repository.update(board);
     }
     @Override

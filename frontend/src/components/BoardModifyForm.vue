@@ -17,7 +17,7 @@
         </tr>
         <tr>
           <td>Writer</td>
-          <td><input type="text" v-model="writer" disabled></td>
+          <td><input type="text" :value="board.writer" disabled></td>
         </tr>
         <tr>
           <td>Content</td>
