@@ -1,5 +1,8 @@
 package com.example.demo.controller;
 
+import com.example.demo.entity.Member;
+import com.example.demo.entity.MemberAuth;
+import com.example.demo.security.AuthUtil;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
