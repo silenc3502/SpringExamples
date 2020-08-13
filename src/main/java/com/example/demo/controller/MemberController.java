@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.entity.Member;
 import com.example.demo.entity.MemberAuth;
 import com.example.demo.security.AuthUtil;
+import com.example.demo.service.MemberService;
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -13,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Locale;
 
 @Log
@@ -23,8 +25,8 @@ public class MemberController {
     @Autowired
     private MemberService service;
 
-    @Autowired
-    private MemberAuthService authService;
+    //@Autowired
+    //private MemberAuthService authService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -112,9 +114,10 @@ public class MemberController {
         Long userNo = AuthUtil.getUserNo(header);
         log.info("register userNo: " + userNo);
 
-        MemberAuth auth = authService.read(userNo);
-        log.info("auth: " + auth);
+        //MemberAuth auth = authService.read(userNo);
+        //log.info("auth: " + auth);
 
-        return new ResponseEntity<>(auth, HttpStatus.OK);
+        //return new ResponseEntity<>(auth, HttpStatus.OK);
+        return null;
     }
 }
