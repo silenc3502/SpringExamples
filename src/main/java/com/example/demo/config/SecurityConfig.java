@@ -1,6 +1,8 @@
 package com.example.demo.config;
 
 import com.example.demo.security.CustomAccessDeniedHandler;
+import com.example.demo.security.CustomUserDetailsService;
+import com.example.demo.security.JwtAuthenticationFilter;
 import lombok.extern.java.Log;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
