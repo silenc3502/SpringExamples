@@ -2,12 +2,15 @@ package com.example.demo.controller;
 
 import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Locale;
 
 @Log
 @RestController
@@ -22,6 +25,9 @@ public class MemberController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private MessageSource messageSource;
 
     @PostMapping("")
     public ResponseEntity<Member> register(@Validated @RequestBody Member member)
@@ -49,5 +55,63 @@ public class MemberController {
         Member member = service.read(userNo);
 
         return new ResponseEntity<>(member, HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @DeleteMapping("/{userNo}")
+    public ResponseEntity<Void> remove(@PathVariable("userNo") Long userNo) throws Exception {
+        service.remove(userNo);
+
+        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+    }
+
+    @PutMapping("/{userNo}")
+    public ResponseEntity<Member> modify(@PathVariable("userNo") Long userNo,
+                                         @Validated @RequestBody Member member)
+                                                                throws Exception {
+        log.info("modify - member.getUserName(): " + member.getUserName());
+        log.info("modify - userNo: " + userNo);
+
+        member.setUserNo(userNo);
+        service.modify(member);
+
+        return new ResponseEntity<>(member, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/setup",
+                    method = RequestMethod.POST,
+                    produces = "text/plain;charset=UTF-8")
+    public ResponseEntity<String> setupAdmin(@Validated @RequestBody Member member)
+                                                                    throws Exception {
+        log.info("setupAdmin: member.getUserName(): " + member.getUserName());
+        log.info("setupAdmin: service.countAll(): " + service.countAll());
+
+        if (service.countAll() == 0) {
+            String inputPassword = member.getUserPw();
+            member.setUserPw(passwordEncoder.encode(inputPassword));
+
+            member.setJob("Admin");
+
+            service.setupAdmin(member);
+
+            return new ResponseEntity<>("SUCCESS", HttpStatus.OK);
+        }
+
+        String message = messageSource.getMessage("common.cannotSetupAdmin",
+                null, Locale.KOREAN);
+
+        return new ResponseEntity<>(message, HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping("/myinfo")
+    public ResponseEntity<MemberAuth> getMyInfo(
+            @RequestHeader (name="Authorization") String header) throws Exception {
+        Long userNo = AuthUtil.getUserNo(header);
+        log.info("register userNo: " + userNo);
+
+        MemberAuth auth = authService.read(userNo);
+        log.info("auth: " + auth);
+
+        return new ResponseEntity<>(auth, HttpStatus.OK);
     }
 }
