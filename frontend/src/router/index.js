@@ -86,15 +86,15 @@ const routes = [
     }
   },
   {
-    path: '/LoginPage'
-    name: 'LoginPage'
+    path: '/LoginPage',
+    name: 'LoginPage',
     components: {
       default: LoginPage
     }
   },
   {
-    path: '/AdminSetupPage'
-    name: 'AdminSetupPage'
+    path: '/AdminSetupPage',
+    name: 'AdminSetupPage',
     components: {
       default: AdminSetupPage
     }

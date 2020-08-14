@@ -1,7 +1,8 @@
 <template>
   <div class="home">
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
-    <div id="header">
+    <div id="header" v-if="isAuthorized">
+      <button id="login" @click="onClickLogout">Logout</button>
       <router-link :to="{ name: 'Home' }"
           class="nav-link"
           active-class="active">
@@ -32,10 +33,31 @@
           active-class="active">
         Board
       </router-link>
+      <h2>This is an Home Page</h2>
+      <div id="app">
+        {{ message }}<br>
+      </div>
+      <div>
+        <br><span>{{ myinfo.auth }}계정, 접속을 환영합니다.</span>
+      </div>
     </div>
-    <h2>This is an Home Page</h2>
-    <div id="app">
-      {{ message }}<br>
+    <div id="header" v-else>
+      <button id="login" @click="$router.push('LoginPage')">
+        Login
+      </button>
+      <button id="login" @click="$router.push('AdminSetupPage')">
+        Register Admin
+      </button>
+      <router-link :to="{ name: 'Home' }"
+          class="nav-link"
+          active-class="active">
+        Home
+      </router-link>
+      <router-link :to="{ name: 'About' }"
+          class="nav-link"
+          active-class="active">
+        About Us
+      </router-link>
     </div>
   </div>
 </template>
@@ -46,9 +68,11 @@
 /* eslint-disable no-unused-vars */
 import store from '../store'
 import Vue from 'vue'
-import cookies from 'vue-cookies'
+// import cookies from 'vue-cookies'
 
-Vue.use(cookies)
+import { mapState, mapGetters, mapActions } from 'vuex'
+
+// Vue.use(cookies)
 
 export default {
   name: 'Home',
@@ -56,6 +80,18 @@ export default {
     return {
       message: 'Vue Test Message'
     }
+  },
+  methods: {
+    onClickLogout () {
+      this.logout()
+      alert('Success Logout')
+      this.$router.push({ name: 'Home' })
+    },
+    ...mapActions(['logout'])
+  },
+  computed: {
+    ...mapState(['myinfo']),
+    ...mapGetters(['isAuthorized'])
   },
   components: {
   }
@@ -81,6 +117,13 @@ img {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+#login {
+  background-color: #77aadd;
+  color: #ffffff;
+  font-weight: bold;
+  float: right;
 }
 
 </style>
