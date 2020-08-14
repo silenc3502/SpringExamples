@@ -18,4 +18,8 @@ public class ErrorInfoApi implements Serializable {
     public void addDetailInfo(String target, String message) {
         details.add(new DetailErrorInfoApi(target, message));
     }
+
+    public List<DetailErrorInfoApi> getDetails() {
+        return details;
+    }
 }

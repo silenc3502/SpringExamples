@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import LoginForm from '../components/LoginForm.vue'
+import LoginForm from '@/components/LoginForm.vue'
 import { mapActions } from 'vuex'
 
 export default {
@@ -21,7 +21,8 @@ export default {
         alert('Login Success')
         this.$router.push({ name: 'Home' })
       }).catch(err => {
-        alert(err.response.data.message)
+        // alert(err.response.data.message)
+        alert('Something Fail: ', err)
       })
     },
     ...mapActions(['login'])

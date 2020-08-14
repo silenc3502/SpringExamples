@@ -76,13 +76,12 @@ export default {
     context.commit(CLEAR_ALL)
   },
   login ({ commit }, payload) {
-    console.log('Actions login()')
-    return axios.post('http://localhost:7777/api/authenticate?' +
-    `username=${payload.userid}&password=${payload.password}`, {
+    console.log('actions login')
+    return axios.post(`http://localhost:7777/api/authenticate?username=${payload.userid}&password=${payload.password}`, {
       username: payload.userid,
       password: payload.password
     }).then(res => {
-      console.log('Actions after post')
+      console.log('actions after post')
       const { authorization } = res.headers
       const accessToken = authorization.substring(7)
 

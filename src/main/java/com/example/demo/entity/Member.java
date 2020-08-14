@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+@JsonIgnoreProperties(value="hibernateLazyInitializer")
 @Getter
 @Setter
 @EqualsAndHashCode(of = "userNo")
@@ -55,7 +57,7 @@ public class Member {
         authList.add(auth);
     }
 
-    public void clearAuth() {
+    public void clearAuthList() {
         authList.clear();
     }
 }

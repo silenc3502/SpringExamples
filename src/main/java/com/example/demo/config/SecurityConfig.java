@@ -25,10 +25,11 @@ import java.util.Arrays;
 @Log
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter{
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        log.info("Security Configuration");
+        log.info("security config ...");
 
         http.cors()
                 .and()
@@ -73,7 +74,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         config.addAllowedMethod("POST");
         config.addAllowedMethod("DELETE");
         config.addAllowedMethod("PATCH");
-        config.setExposedHeaders(Arrays.asList("Authorization", "Content-Disposition"));
+        config.setExposedHeaders(Arrays.asList("Authorization","Content-Disposition"));
 
         source.registerCorsConfiguration("/**", config);
 
