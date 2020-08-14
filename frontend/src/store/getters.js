@@ -24,5 +24,8 @@ export default {
   },
   random (state) {
     return state.random
+  },
+  isAuthorized (state) {
+    return state.accessToken.length > 0 && !!state.myinfo
   }
 }

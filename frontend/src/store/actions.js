@@ -93,6 +93,17 @@ export default {
       console.log('After Get Auth Info')
       commit(SET_MY_INFO, res.data)
     })
+  },
+  loginByToken ({ commit }, token) {
+    commit(SET_ACCESS_TOKEN, token)
+    return axios.get('http://localhost:7777/users/myinfo')
+      .then(res => {
+        commit(SET_MY_INFO, res.data)
+      })
+  },
+  logout ({ commit }) {
+    commit(DESTROY_MY_INFO)
+    commit(DESTROY_ACCESS_TOKEN)
   }
 }
 // actions: {

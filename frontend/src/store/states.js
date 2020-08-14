@@ -8,5 +8,8 @@ export default {
   filter: null,
   // Vue Board
   boards: [],
-  board: null
+  board: null,
+  // For Login
+  accessToken: '',
+  myinfo: null
 }

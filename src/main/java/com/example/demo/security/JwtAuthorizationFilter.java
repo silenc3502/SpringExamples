@@ -57,13 +57,13 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
     private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest req) {
         String token = req.getHeader(SecurityConstants.TOKEN_HEADER);
 
-        if (isEmpty(token)) {
+        if (isNotEmpty(token)) {
             try {
                 byte[] signingKey = SecurityConstants.JWT_SECRET.getBytes();
 
                 Jws<Claims> parsedToken = Jwts.parser()
                         .setSigningKey(signingKey)
-                        .parseClaimsJws(token.replace("JwTtEsT", ""));
+                        .parseClaimsJws(token.replace("Bearer", ""));
 
                 String username = parsedToken
                         .getBody()
