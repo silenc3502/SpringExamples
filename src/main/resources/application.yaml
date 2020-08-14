@@ -7,3 +7,28 @@ spring:
     username: bitai
     password: 456123
     driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    open-in-view: false
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+    app:
+      sample:
+        message:
+          AuditingFilter: DEBUG
+          SecurityChecker: DEBUG
+          MessageService: DEBUG

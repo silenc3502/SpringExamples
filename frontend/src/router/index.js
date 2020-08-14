@@ -12,6 +12,10 @@ import BoardRegisterPage from '../views/BoardRegisterPage.vue'
 import BoardModifyPage from '../views/BoardModifyPage.vue'
 import BoardReadPage from '../views/BoardReadPage.vue'
 
+// For Login System
+import LoginPage from '../views/LoginPage.vue'
+import AdminSetupPage from '../views/AdminSetupPage.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -79,6 +83,20 @@ const routes = [
     props: {
       // 이 옵션을 설정하면 route.params가 컴포넌트의 props에 자동 설정됨
       default: true
+    }
+  },
+  {
+    path: '/LoginPage'
+    name: 'LoginPage'
+    components: {
+      default: LoginPage
+    }
+  },
+  {
+    path: '/AdminSetupPage'
+    name: 'AdminSetupPage'
+    components: {
+      default: AdminSetupPage
     }
   }
 ]
