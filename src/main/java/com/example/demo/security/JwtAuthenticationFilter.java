@@ -25,6 +25,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     public JwtAuthenticationFilter(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
 
+        // 인자로 들어온 URL에서 정보를 보겠다!
         setFilterProcessesUrl(SecurityConstants.AUTH_LOGIN_URL);
     }
 

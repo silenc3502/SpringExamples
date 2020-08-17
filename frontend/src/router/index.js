@@ -16,6 +16,9 @@ import BoardReadPage from '../views/BoardReadPage.vue'
 import LoginPage from '../views/LoginPage.vue'
 import AdminSetupPage from '../views/AdminSetupPage.vue'
 
+// Vuetify
+import VuetifyBoard from '../views/VuetifyBoard.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -97,6 +100,13 @@ const routes = [
     name: 'AdminSetupPage',
     components: {
       default: AdminSetupPage
+    }
+  },
+  {
+    path: '/VuetifyBoard',
+    name: 'VuetifyBoard',
+    components: {
+      default: VuetifyBoard
     }
   }
 ]
