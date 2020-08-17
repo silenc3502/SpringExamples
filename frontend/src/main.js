@@ -9,7 +9,8 @@ Vue.config.productionTip = false
 Vue.use(cookies)
 
 function init () {
-  const savedToken = cookies.get('accessToken')
+  const savedToken = null
+  // const savedToken = cookies.get('accessToken')
 
   if (savedToken) {
     return store.dispatch('loginByToken', savedToken)
