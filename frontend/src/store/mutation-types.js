@@ -24,7 +24,7 @@ export const DESTROY_MY_INFO = 'DESTROY_MY_INFO'
 
 // For Crawling
 export const CRAWL_LISTS = 'CRAWL_LISTS'
-export const START = 'START'
+export const CRAWLSTART = 'CRAWLSTART'
 export const FINDONE = 'FINDONE'
 export const FINDHOME = 'FINDHOME'
 export const BOOLEAN = 'BOOLEAN'

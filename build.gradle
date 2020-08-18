@@ -48,6 +48,7 @@ dependencies {
 	compile 'org.springframework:spring-orm'
 	compile 'com.h2database:h2'
 	compile 'org.hibernate.validator:hibernate-validator:6.0.7.Final'
+	compile 'org.jsoup:jsoup:1.13.1'
 	// developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	runtimeOnly 'mysql:mysql-connector-java'
 	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
