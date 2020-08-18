@@ -25,7 +25,7 @@ import cookies from 'vue-cookies'
 
 export default {
   [CRAWLSTART] (state, payload) {
-    state.list = payload
+    state.lists = payload
   },
   [FINDONE] (state, payload) {
     state.news = payload

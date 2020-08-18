@@ -13,7 +13,7 @@ export default {
   accessToken: '',
   myinfo: null,
   // Crawling
-  list: [],
+  lists: [],
   news: [],
   homeNews: [],
   savedNews: [],

@@ -25,8 +25,8 @@
           </thead>
           <tbody>
             <tr v-for="list of lists" :key="list.title">
-              <td style="color: gray">{{ list.newNo }}</td>
-              <td><a @click="clickNews(i.newsNo)">{{ list.title }}</a></td>
+              <td style="color: gray">{{ list.newsNo }}</td>
+              <td><a @click="clickNews(list.newsNo)">{{ list.title }}</a></td>
             </tr>
           </tbody>
         </template>
@@ -43,7 +43,7 @@ export default {
   components: { Layout },
   computed: {
     ...mapState({
-      list: state => state.list
+      lists: state => state.lists
     })
   },
   methods: {
