@@ -1,5 +1,11 @@
 package com.example.demo.service;
 
+import com.example.demo.entity.ClickedNews;
+import com.example.demo.entity.HomeNews;
+import com.example.demo.entity.News;
+import com.example.demo.repository.ClickedNewsRepository;
+import com.example.demo.repository.HomeNewsRepository;
+import com.example.demo.repository.NewsRepository;
 import lombok.extern.java.Log;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -10,6 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Lazy
 @Log
@@ -19,6 +27,9 @@ public class NewsCrawlService {
 
     @Autowired
     HomeNewsRepository homeNewsRepository;
+
+    @Autowired
+    ClickedNewsRepository clickedNewsRepository;
 
     private Document document;
 
@@ -71,5 +82,56 @@ public class NewsCrawlService {
             homeNews.setImage(image.get(i).attr("src"));
             homeNewsRepository.save(homeNews);
         }
+    }
+
+    public void mainCrawler(String category) {
+        log.info("mainCrawler(): " + category);
+
+        document = connectUrl("https://news.daum.net/" + category);
+        newsRepository.deleteAll();
+
+        daumNews(document.select("div.item_mainnews>div.cont_thumb>strong.tit_thumb>a"), category);
+        daumNews(document.select("ul.item_mainnews>li>div.cont_thumb>strong.tit_thumb>a"), category);
+        daumNews(document.select("strong.tit_mainnews>a"), category);
+        daumNews(document.select("ul.list_issue>li>a.link_txt"), category);
+    }
+
+    public void daumNews(Elements elements, String category) {
+        log.info("daumNews(): elements - " + elements + ", category - " + category);
+
+        News news = null;
+
+        for (int i = 0; i < elements.size(); i++) {
+            news = new News();
+
+            news.setNewsNo(String.valueOf(newsRepository.findAll().size() + 1));
+            news.setAddress(elements.get(i).attr("href"));
+            news.setCategory(category);
+            news.setTitle(elements.get(i).text());
+
+            newsRepository.save(news);
+        }
+    }
+
+    public ClickedNews crawlingOne(String newsNo) {
+        log.info("crawlingOne(): " + newsNo);
+
+        News news = newsRepository.findByNewsNo(newsNo);
+
+        ClickedNews clickedNews = new ClickedNews();
+
+        clickedNews.setTitle(news.getTitle());
+        clickedNews.setCategory(news.getCategory());
+        clickedNews.setAddress(news.getAddress());
+        clickedNews.setClickedNewsNo(String.valueOf(clickedNewsRepository.findAll().size() + 1));
+
+        document = connectUrl(clickedNews.getAddress());
+
+        clickedNews.setDate(document.select("span.num_date").text());
+        clickedNews.setContents(document.select("div.article_view>section>:not(figure)").text());
+
+        clickedNewsRepository.save(clickedNews);
+
+        return clickedNews;
     }
 }
