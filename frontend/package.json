@@ -31,6 +31,7 @@
     "vue-cookies": "^1.7.3",
     "vue-router": "^3.3.4",
     "vue-template-compiler": "^2.6.11",
+    "vuetify": "^2.3.8",
     "vuex": "^3.5.1"
   },
   "eslintConfig": {
