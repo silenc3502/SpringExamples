@@ -43,6 +43,11 @@
           active-class="active">
         VuetifyBoardListPage
       </router-link>
+      <router-link :to="{ name: 'CrawlCategory' }"
+          class="nav-link"
+          active-class="active">
+        CrawlCategory
+      </router-link>
       <h2>This is an Home Page</h2>
       <div id="app">
         {{ message }}<br>
