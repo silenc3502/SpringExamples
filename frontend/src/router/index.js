@@ -22,6 +22,9 @@ import VuetifyBoard from '../views/VuetifyBoard.vue'
 // Vuetify Board List
 import VuetifyBoardListPage from '../views/VuetifyBoardListPage.vue'
 
+// For Crawling
+import CrawlCategory from '../views/CrawlCategory.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -117,6 +120,13 @@ const routes = [
     name: 'VuetifyBoardListPage',
     components: {
       default: VuetifyBoardListPage
+    }
+  },
+  {
+    path: '/CrawlCategory',
+    name: 'CrawlCategory',
+    components: {
+      default: CrawlCategory
     }
   }
 ]
