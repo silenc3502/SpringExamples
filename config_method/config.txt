@@ -1,0 +1,11 @@
+sudo apt-get install curl
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+npm install -g create-react-app
+sudo chown -R bitai /usr/lib/node_modules
+sudo chown -R bitai /usr/bin/create-react-app
+
+sudo npm install -g create-react-app
+create-react-app react_frontend
+cd react_frontend
+npm start
+
