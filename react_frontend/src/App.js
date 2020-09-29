@@ -4,6 +4,16 @@ import MyTestComponent from './MyTestComponent'
 import DefaultPropsTest from "./DefaultPropsTest";
 import TypePropsTest from  './TypePropsTest'
 import NumberPropsTest from './NumberPropsTest'
+import ConstructorPropsTest from './ConstructorPropsTest'
+import ClickEventPropsTest from  './ClickEventPropsTest'
+import NonConsEventPropsTest from "./NonConsEventPropsTest";
+import EventPractice from './event/EventPractice'
+import ChangeEventPrac from "./event/ChangeEventPrac";
+import ReadChangeEventContent from "./event/ReadChangeEventContent";
+import ChangeClickEventTest from "./event/ChangeClickEventTest";
+import ChangeClickEventHandler from  './event/ChangeClickEventHandler'
+import ChangeClickEventHandlerNonCons from './event/ChangeClickEventHandlerNonCons'
+import IdPwEventPrac from './event/IdPwEventPrac'
 
 function App() {
     const reactText = 'Golang'
@@ -39,6 +49,16 @@ function App() {
             <DefaultPropsTest/>
             <TypePropsTest name={3}/>
             <NumberPropsTest name="Rust" age={10}/>
+            <ConstructorPropsTest name="Verilog" age={7}/>
+            <ClickEventPropsTest name="C#" age={3}/>
+            <NonConsEventPropsTest name="C++" age={2}/>
+            <EventPractice/>
+            <ChangeEventPrac/>
+            <ReadChangeEventContent/>
+            <ChangeClickEventTest/>
+            <ChangeClickEventHandler/>
+            <ChangeClickEventHandlerNonCons/>
+            <IdPwEventPrac/>
         </div>
     );
 }
