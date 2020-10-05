@@ -18,6 +18,9 @@ import AddEnterEvent from "./event/AddEnterEvent";
 import BGTest from "./reference/BGTest";
 import RefBoxTest from "./reference/RefBoxTest";
 import RefBoxBottomTest from "./reference/RefBoxBottomTest";
+import IterationSample from "./repeat/IterationSample";
+import StateBasedIteration from "./repeat/StateBasedIteration";
+import StateBasedEventIteration from "./repeat/StateBasedEventIteration";
 
 class App extends Component {
     render() {
@@ -69,6 +72,9 @@ class App extends Component {
                 <RefBoxTest/>
                 <RefBoxBottomTest ref={(ref) => this.refBoxBottomTest = ref}/>
                 <button onClick={() => this.refBoxBottomTest.scrollToBottom()}>Bottom</button>
+                <IterationSample/>
+                <StateBasedIteration/>
+                <StateBasedEventIteration/>
             </div>
         );
     }
