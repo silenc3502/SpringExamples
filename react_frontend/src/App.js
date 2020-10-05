@@ -21,6 +21,7 @@ import RefBoxBottomTest from "./reference/RefBoxBottomTest";
 import IterationSample from "./repeat/IterationSample";
 import StateBasedIteration from "./repeat/StateBasedIteration";
 import StateBasedEventIteration from "./repeat/StateBasedEventIteration";
+import LifeCycleSample from "./lifecycle/LifeCycleSample"
 
 class App extends Component {
     render() {
@@ -75,6 +76,7 @@ class App extends Component {
                 <IterationSample/>
                 <StateBasedIteration/>
                 <StateBasedEventIteration/>
+                <LifeCycleSample/>
             </div>
         );
     }
