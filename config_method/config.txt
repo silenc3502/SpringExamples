@@ -13,3 +13,4 @@ npm install bootstrap react-bootstrap --save-dev
 npm install react-router-dom --save-dev
 npm install axios --save-dev
 
+npm add node-sass

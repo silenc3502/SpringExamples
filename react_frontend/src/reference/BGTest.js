@@ -15,7 +15,7 @@ class BGTest extends Component {
     handleClick = (e) => {
         this.setState({
             clicked: true,
-            validated: this.state.pw == 'xxxx'
+            validated: this.state.pw === 'xxxx'
         })
     }
     handleKeyPress = (e) => {
