@@ -14,3 +14,12 @@ npm install react-router-dom --save-dev
 npm install axios --save-dev
 
 npm add node-sass
+
+### Yarn Install
+curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt-get update
+sudo apt-get install yarn
+
+### How to check successful Install (1.22.5)
+yarn -version
