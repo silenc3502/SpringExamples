@@ -23,3 +23,17 @@ sudo apt-get install yarn
 
 ### How to check successful Install (1.22.5)
 yarn -version
+
+### Let's make config directory
+yarn eject
+
+if error) git commit!
+
+npm uninstall --save-dev sass-loader
+npm install --save-dev sass-loader@7.1.0
+
+### When '~include-.....' does not work
+@import '~include-media/dist/include-media'
+@import '~open-color/open-color'
+
+npm add open-color include-media

@@ -1,9 +1,9 @@
 import React from "react";
-import './SassComponent.scss';
+import './SassStyleComponent.scss';
 
-const SassComponent = () => {
+const SassStyleComponent = () => {
     return(
-        <div className="SassComponent">
+        <div className="SassStyleComponent">
             <div className="box red"/>
             <div className="box orange"/>
             <div className="box yellow"/>
@@ -15,4 +15,4 @@ const SassComponent = () => {
     );
 };
 
-export default SassComponent
+export default SassStyleComponent

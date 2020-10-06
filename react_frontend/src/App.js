@@ -24,6 +24,7 @@ import StateBasedEventIteration from "./repeat/StateBasedEventIteration";
 import LifeCycleSample from "./lifecycle/LifeCycleSample"
 import classNames from 'classnames/bind'
 import SassComponent from "./SassComponent";
+import SassStyleComponent from './style_dir/SassStyleComponent'
 
 const cx = classNames.bind(styles)
 
@@ -98,6 +99,10 @@ class App extends Component {
                 <div>
                     <h1>Hello</h1>
                     <SassComponent/>
+                </div>
+                <div>
+                    <h1>Test</h1>
+                    <SassStyleComponent/>
                 </div>
             </div>
         );

@@ -1,0 +1,16 @@
+@import '~include-media/dist/include-media';
+@import '~open-color/open-color';
+
+$red: #fa5252;
+$orange: #fd7e16;
+$yellow: #fcc617;
+$green: #40d357;
+$blue: #33a0fa;
+$indigo: #5c5afa;
+$violet: #7a50f3;
+
+@mixin sqaure($size) {
+  $calculated: 32px * $size;
+  width: $calculated;
+  height: $calculated;
+}
