@@ -37,3 +37,9 @@ npm install --save-dev sass-loader@7.1.0
 @import '~open-color/open-color'
 
 npm add open-color include-media
+
+### Auto Styling Page
+https://styled-components.com/docs/advanced#media-templates
+
+### How to use upon information
+npm add styled-components

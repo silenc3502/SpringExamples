@@ -25,6 +25,9 @@ import LifeCycleSample from "./lifecycle/LifeCycleSample"
 import classNames from 'classnames/bind'
 import SassComponent from "./SassComponent";
 import SassStyleComponent from './style_dir/SassStyleComponent'
+import CSSModule from "./style_dir/CSSModule";
+import CMTest from './style_dir/CMTest'
+import StyledComponent from "./style_dir/StyledComponent";
 
 const cx = classNames.bind(styles)
 
@@ -103,6 +106,9 @@ class App extends Component {
                 <div>
                     <h1>Test</h1>
                     <SassStyleComponent/>
+                    <CSSModule/>
+                    <CMTest/>
+                    <StyledComponent/>
                 </div>
             </div>
         );

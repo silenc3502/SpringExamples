@@ -6,7 +6,7 @@ $blue: #33a0fa;
 $indigo: #5c5afa;
 $violet: #7a50f3;
 
-@mixin sqaure($size) {
+@mixin square($size) {
   $calculated: 32px * $size;
   width: $calculated;
   height: $calculated;
@@ -20,31 +20,31 @@ $violet: #7a50f3;
     transition: all 0.3s ease-in;
     &.red {
       background: $red;
-      @include sqaure(1);
+      @include square(1);
     }
     &.orange {
       background: $orange;
-      @include sqaure(2);
+      @include square(2);
     }
     &.yellow {
       background: $yellow;
-      @include sqaure(3);
+      @include square(3);
     }
     &.green {
       background: $green;
-      @include sqaure(4);
+      @include square(4);
     }
     &.blue {
       background: $blue;
-      @include sqaure(5);
+      @include square(5);
     }
     &.indigo {
       background: $indigo;
-      @include sqaure(6);
+      @include square(6);
     }
     &.violet {
       background: $violet;
-      @include sqaure(7);
+      @include square(7);
     }
     &:hover {
       background: black;

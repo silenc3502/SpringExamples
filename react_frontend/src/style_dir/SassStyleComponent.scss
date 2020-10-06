@@ -12,31 +12,31 @@
     transition: all 0.8s ease-in;
     &.red {
       background: $red;
-      @include sqaure(1)
+      @include square(1)
     }
     &.orange {
       background: $orange;
-      @include sqaure(2);
+      @include square(2);
     }
     &.yellow {
       background: $yellow;
-      @include sqaure(3);
+      @include square(3);
     }
     &.green {
       background: $green;
-      @include sqaure(4);
+      @include square(4);
     }
     &.blue {
       background: $blue;
-      @include sqaure(5);
+      @include square(5);
     }
     &.indigo {
       background: $indigo;
-      @include sqaure(6);
+      @include square(6);
     }
     &.violet {
       background: $violet;
-      @include sqaure(7);
+      @include square(7);
     }
     &:hover {
       background: black;
