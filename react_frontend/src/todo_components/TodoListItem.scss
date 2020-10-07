@@ -1,0 +1,48 @@
+.TodoListItem {
+  padding: 1rem;
+  display: flex;
+  align-items: center;    // 세로 중앙 정렬
+
+  &:nth-child(even) {
+    background: azure;
+  }
+
+  .checkbox {
+    cursor: pointer;
+    flex: 1;  // 차지할 수 있는 영역 모두 차지
+    display: flex;
+    align-items: center;  // 세로 중앙 정렬
+    svg {
+      font-size: 1.6rem;
+    }
+    .text {
+      margin-left: 0.5rem;
+      flex: 1;  // 차지할 수 있는 영역 모두 차지
+    }
+    // 체크되었을때!
+    &.checked {
+      svg {
+        color: springgreen;
+      }
+      .text {
+        color: azure;
+        text-decoration: line-through;
+      }
+    }
+  }
+
+  .remove {
+    display: flex;
+    align-items: center;
+    font-size: 1.6rem;
+    color: #ff6b6b;
+    &:hover {
+      color: crimson;
+    }
+  }
+
+  // 엘리먼트 사이에 테두리를 넣어주자!
+  & + & {
+    border-top: 1px solid #000000
+  }
+}

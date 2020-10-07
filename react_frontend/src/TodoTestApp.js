@@ -4,7 +4,7 @@ import TodoTemplate from "./todo_components/TodoTemplate";
 import TodoInsert from "./todo_components/TodoInsert";
 import TodoList from "./todo_components/TodoList";
 
-const App = () => {
+const TodoTestApp = () => {
     const [todos, setTodos] = useState([
         {
             id: 1,
@@ -20,7 +20,7 @@ const App = () => {
             id: 3,
             text: 'Golang',
             checked: false
-        },
+        }
     ])
 
     const nextId = useRef(4)
@@ -48,11 +48,11 @@ const App = () => {
         id => {
             setTodos(
                 todos.map(todo =>
-                    todo.id === id ? { ...todo, checked: !todo.checked } : todo,
-                ),
-            );
-        }, [todos],
-    );
+                    todo.id === id ? { ...todo, checked: !todo.checked } : todo
+                )
+            )
+        }, [todos]
+    )
 
     return (
         <div>
@@ -65,4 +65,4 @@ const App = () => {
     );
 }
 
-export default App;
+export default TodoTestApp;

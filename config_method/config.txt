@@ -43,3 +43,6 @@ https://styled-components.com/docs/advanced#media-templates
 
 ### How to use upon information
 npm add styled-components
+
+### For ToDo App
+npm add node-sass classnames react-icons
