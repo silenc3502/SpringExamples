@@ -4,12 +4,15 @@ import './index.css';
 import App from './App';
 import BackupApp from './BackupApp'
 import * as serviceWorker from './serviceWorker';
+import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.render(
-  <React.StrictMode>
+  //<React.StrictMode>
+  <BrowserRouter>
     <BackupApp/>
-    <App />
-  </React.StrictMode>,
+    <App/>
+  </BrowserRouter>,
+  //</React.StrictMode>,
   document.getElementById('root')
 );
 

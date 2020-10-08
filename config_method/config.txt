@@ -46,3 +46,21 @@ npm add styled-components
 
 ### For ToDo App
 npm add node-sass classnames react-icons
+
+### For High Performance & Support Plugins
+npm add react-virtualized
+npm add immer
+npm add react-router-dom
+npm add axios
+npm add redux-devtools-extension
+npm install --save redux react-redux
+npm add redux-actions
+npm add redux-logger
+npm add redux-thunk
+npm add redux-saga
+
+
+
+
+
+
