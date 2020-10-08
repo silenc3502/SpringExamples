@@ -66,11 +66,19 @@ class App extends Component {
                     <li>
                         <Link to="/about">About</Link>
                     </li>
+                    <li>
+                        <Link to="/profiles">Profile</Link>
+                    </li>
+                    <li>
+                        <Link to="/history">History</Link>
+                    </li>
                 </ul>
                 <hr/>
                 <Switch>
                     <Route path="/" component={ Home } exact={ true }/>
                     <Route path={[ "/about", "/info" ]} component={ About }/>
+                    <Route path="/profiles" component={ Profiles }/>
+                    <Route path="/history" component={ HistorySample }/>
                     <Route
                         render={ ({ location }) => (
                             <div>
