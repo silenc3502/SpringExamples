@@ -32,6 +32,8 @@ import StyledComponent from "./style_dir/StyledComponent";
 import { Route, Link, Switch } from 'react-router-dom'
 import About from './router_test/About'
 import Home from './router_test/Home'
+import Profiles from './router_test/Profiles'
+import HistorySample from './router_test/HistorySample'
 
 const cx = classNames.bind(styles)
 
